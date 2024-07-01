@@ -32,6 +32,9 @@ let
     waybar
     swww
     wlogout
+    slurp
+    grim
+    rofi
     dolphin
   ];
 in
