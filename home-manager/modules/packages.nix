@@ -26,10 +26,13 @@ let
     smug
     nsxiv
 
+    wezterm
+
     # hyprland
     waybar
     swww
     wlogout
+    dolphin
   ];
 in
 {
