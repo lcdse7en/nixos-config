@@ -1,11 +1,11 @@
 { config, inputs, pkgs, configDir, ... }:
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    # package = pkgs.hyprland;
-    xwayland.enable = true;
-    systemd.enable = true;
-  };
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   # package = pkgs.hyprland;
+  #   xwayland.enable = true;
+  #   systemd.enable = true;
+  # };
 
   # settings = {
   #   source = [
@@ -21,10 +21,10 @@
   #   ];
   # };
 
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   # home.packages = with pkgs; [
   #   swww
