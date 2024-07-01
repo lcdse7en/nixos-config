@@ -1,4 +1,4 @@
-{ config, configDir, ... }:
+{ config, pkgs, configDir, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -6,17 +6,11 @@
     vimAlias = true;
   };
 
-
   xdg.configFile = {
     nvim = {
       source = config.lib.file.mkOutOfStoreSymlink "${configDir}/se7en-nvim";
       recursive = true;
     };
   };
-
- #  extraPackages = with pkgs; [
- #   nodePackages.pyright
- #    rust-analyzer
- #  ];
 
 }
