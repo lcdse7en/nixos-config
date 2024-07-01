@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, configDir, ... }:
+{ config, pkgs, configDir, ... }:
 {
   # wayland.windowManager.hyprland = {
   #   enable = true;
