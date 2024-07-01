@@ -36,7 +36,7 @@ in
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
-    # ./modules/wezterm.nix
+    ./modules/wezterm.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
     (import ./modules/yazi.nix { inherit config configDir; })
