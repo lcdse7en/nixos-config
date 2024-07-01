@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, style, ... }:
 let
   flakePath = "~/nixos-config";
   abbr = {
