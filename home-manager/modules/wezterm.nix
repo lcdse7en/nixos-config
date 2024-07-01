@@ -23,7 +23,7 @@ in
     enable = mkEnableOption "wezterm";
   };
 
-  config = nkIf cfg.enable
+  config = mkIf cfg.enable
     {
       programs.wezterm = {
         enable = true;
