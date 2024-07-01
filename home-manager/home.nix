@@ -39,7 +39,7 @@ in
     ./modules/wezterm.nix
     # ./modules/hyprland.nix
 
-    (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
+    (import ./modules/nvim.nix { inherit config inputs lib pkgs configDir; })
     (import ./modules/hyprland.nix { inherit config lib pkgs configDir; })
   ];
 
