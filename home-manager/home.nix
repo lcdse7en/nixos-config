@@ -1,13 +1,13 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, lib
+, config
+, pkgs
+, ...
 }:
 let
   configDir = "${config.home.homeDirectory}/dotfiles";
-in {
+in
+{
   programs.home-manager.enable = true;
 
   home = {
@@ -15,13 +15,11 @@ in {
     homeDirectory = "/home/se7en";
   };
 
-
   home.packages = with pkgs; [
   ];
 
-
   home.file = {
-  # ".config/hypr/hyprland.conf".source = ../dotfiles/config/hypr/hyprland.conf;
+    # ".config/hypr/hyprland.conf".source = ../dotfiles/config/hypr/hyprland.conf;
   };
 
   home.stateVersion = "24.05";
@@ -38,10 +36,10 @@ in {
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
+    ./modules/hyprland.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
   ];
-
 
   home.sessionVariables = {
     EDITOR = "nvim";
