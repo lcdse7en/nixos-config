@@ -15,6 +15,7 @@ let
     yazi
     nodejs
     nixpkgs-fmt
+    brave
   ];
 in
 {
