@@ -36,6 +36,8 @@ let
     grim
     rofi
     dolphin
+    hyprshot
+    wttrbar
   ];
 in
 {
