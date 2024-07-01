@@ -32,18 +32,14 @@ in
 
   imports = [
     ./modules/git.nix
-    # ./modules/fish.nix
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
-    # ./modules/wezterm.nix
+    ./modules/desktop/hyprland
 
-    # (import ./modules/fish.nix { inherit pkgs; })
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
     (import ./modules/yazi.nix { inherit config configDir; })
-    # (import ./modules/wezterm.nix { inherit config configDir; })
-    (import ./modules/hyprland.nix { inherit config configDir; })
-    # (import ./modules/hyprland.nix { inherit config pkgs configDir; })
+    # (import ./modules/hyprland.nix { inherit config configDir; })
   ];
 
   home.sessionVariables = {
