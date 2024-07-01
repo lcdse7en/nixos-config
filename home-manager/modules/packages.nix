@@ -20,6 +20,16 @@ let
     nixpkgs-fmt
     brave
     fzf
+    dunst
+    mpv
+    ncmpcpp
+    smug
+    nsxiv
+
+    # hyprland
+    waybar
+    swww
+    wlogout
   ];
 in
 {
