@@ -32,13 +32,13 @@ in
 
   imports = [
     ./modules/git.nix
-    # ./modules/fish.nix
+    ./modules/fish.nix
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
-    ./modules/wezterm.nix
+    # ./modules/wezterm.nix
 
-    (import ./modules/fish.nix { inherit config lib pkgs; })
+    # (import ./modules/fish.nix { inherit config lib pkgs; })
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
     (import ./modules/yazi.nix { inherit config configDir; })
     # (import ./modules/wezterm.nix { inherit config configDir; })
