@@ -7,19 +7,20 @@
     systemd.enable = true;
   };
 
-  settings = {
-    source = [
-      "~/.config/hypr/hyprland.conf"
-    ];
-    "$mainMod" = "SUPER"; # windows key
-    "$terminal" = "wezterm";
-    "$browser" = "brave";
+  # settings = {
+  #   source = [
+  #     "~/.config/hypr/hyprland.conf"
+  #   ];
+  #   "$mainMod" = "SUPER"; # windows key
+  #   "$terminal" = "wezterm";
+  #   "$browser" = "brave";
+  #
+  #   bind = [
+  #     "$mainMod SHIFT, Q, exec, exit"
+  #     "$mainMod, Return, exec, $terminal"
+  #   ];
+  # };
 
-    bind = [
-      "$mainMod SHIFT, Q, exec, exit"
-      "$mainMod, Return, exec, $terminal"
-    ];
-  };
   # programs.hyprland = {
   #   enable = true;
   #   xwayland.enable = true;
