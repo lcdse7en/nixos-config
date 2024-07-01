@@ -1,10 +1,14 @@
 { config, pkgs, configDir, ... }:
 {
-  wayland.windowManager.hyprland = {
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   package = pkgs.hyprland;
+  #   xwayland.enable = true;
+  #   systemd.enable = true;
+  # };
+  programs.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
     xwayland.enable = true;
-    systemd.enable = true;
   };
 
   # home.packages = with pkgs; [

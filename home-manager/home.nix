@@ -36,7 +36,8 @@ in
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
-    ./modules/hyprland.nix
+    ./modules/wezterm.nix
+    # ./modules/hyprland.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
   ];
