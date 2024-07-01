@@ -14,7 +14,7 @@
   };
   "$mainMod" = "SUPER"; # windows key
   "$terminal" = "wezterm";
-  # "$browser" = "brave";
+  "$browser" = "brave";
 
   bind = [
     "$mainMod SHIFT, Q, exec, exit"
