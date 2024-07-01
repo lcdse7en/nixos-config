@@ -31,11 +31,12 @@ in
   ];
 
   imports = [
+    ./modules/fonts.nix
     ./modules/git.nix
     ./modules/fastfetch.nix
     ./modules/starship.nix
     ./modules/packages.nix
-    ./modules/desktop/hyprland
+    # ./modules/desktop/hyprland
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
     (import ./modules/yazi.nix { inherit config configDir; })
