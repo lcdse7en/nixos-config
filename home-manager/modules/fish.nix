@@ -22,8 +22,8 @@ in
       startship init fish | source
     '';
     shellInit = ''
-      set -g fish_greeting
-      colors
+      # set -g fish_greeting
+      # colors
 
     '';
   };
