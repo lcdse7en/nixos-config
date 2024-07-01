@@ -1,4 +1,4 @@
-{ config, pkgs, configDir, ... }:
+{ config, pkgs ... }:
 let
 in {
   home.packages = with pkgs; [
@@ -7,6 +7,10 @@ in {
 
   home.file = {
     # ".config/hypr/.conf" = "${configDir}/hypr/";
+
+    # wallpaper config
+
+    # waybar confit
   };
 
   wayland.windowManager.hyprland = {
@@ -14,7 +18,7 @@ in {
     plugins = [
     ];
     extraConfig = ''
-      # ${builtins.readFile "${configDir}/hypr/hyprland.conf" }
+      ${builtins.readFile ./config/hypr/hyprland.conf }
     '';
   };
 
