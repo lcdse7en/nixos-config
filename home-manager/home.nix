@@ -37,7 +37,7 @@ in
     ./modules/starship.nix
     ./modules/packages.nix
     ./modules/wezterm.nix
-    # ./modules/hyprland.nix
+    ./modules/hyprland.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
   ];
