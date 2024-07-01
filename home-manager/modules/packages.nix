@@ -16,6 +16,7 @@ let
     nodejs
     nixpkgs-fmt
     brave
+    fzf
   ];
 in
 {

@@ -5,7 +5,7 @@
     # enable nixcomman and flakes for nixos-rebuild switch --flake
     experimental-features = [ "nix-command" "flakes" ];
     # replace official cache with mirrors located in China
-    substituters = [ 
+    substituters = [
       "https://mirrors.cernet.edu.cn/nix-channels/store"
       "https://mirrors.bfsu.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
@@ -26,28 +26,29 @@
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-    in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        inherit inputs system;
-      };
-      modules = [
-        ./nixos/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            users.se7en = ./home-manager/home.nix;
+    in
+    {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
           };
-        }
-       ./home-manager/modules/fonts.nix
-       ./home-manager/modules/ssh.nix
-      ];
-    };
+          inherit inputs system;
+        };
+        modules = [
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              users.se7en = ./home-manager/home.nix;
+            };
+          }
+          ./home-manager/modules/fonts.nix
+          ./home-manager/modules/ssh.nix
+        ];
+      };
     };
 }

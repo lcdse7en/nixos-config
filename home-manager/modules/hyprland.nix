@@ -1,21 +1,21 @@
-{ config, configDir, ... }:
+{ pkgs, configDir, ... }:
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = true;
-    xwayland.enable = true;
+  programs.hyprland.enaable = true;
+
+  environment.systemPackages = with pkgs; [
+    swww
+  ];
+
+  xdg.configFile = {
+    hypr = {
+      source = config.lib.file.mkOutOfStoreSymlink "${configDir}/hypr";
+      recursive = true;
+    };
   };
 
-  # xdg.configFile = {
-  #   nvim = {
-  #     source = config.lib.file.mkOutOfStoreSymlink "${configDir}/hypr";
-  #     recursive = true;
-  #   };
-  # };
-
- #  extraPackages = with pkgs; [
- #   nodePackages.pyright
- #    rust-analyzer
- #  ];
+  #  extraPackages = with pkgs; [
+  #   nodePackages.pyright
+  #    rust-analyzer
+  #  ];
 
 }
