@@ -5,7 +5,6 @@
 , ...
 }:
 let
-  style = "dark";
   configDir = "${config.home.homeDirectory}/dotfiles";
 in
 {
@@ -39,7 +38,7 @@ in
     ./modules/packages.nix
     # ./modules/wezterm.nix
 
-    (import ./modules/fish.nix { inherit pkgs style; })
+    # (import ./modules/fish.nix { inherit pkgs; })
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
     (import ./modules/yazi.nix { inherit config configDir; })
     # (import ./modules/wezterm.nix { inherit config configDir; })

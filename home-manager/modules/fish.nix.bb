@@ -1,4 +1,5 @@
 { config
+, options
 , lib
 , pkgs
 , ...

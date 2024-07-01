@@ -67,7 +67,7 @@
     shell = pkgs.fish;
   };
 
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
 
   programs.hyprland.enable = true;
