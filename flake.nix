@@ -48,7 +48,7 @@
               users.se7en = ./home-manager/home.nix;
             };
           }
-          # ./home-manager/modules/fonts.nix
+          ./home-manager/modules/fonts.nix
           ./home-manager/modules/ssh.nix
           ./home-manager/modules/fish.nix
         ];
