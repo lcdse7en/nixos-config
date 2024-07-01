@@ -40,7 +40,7 @@ in
     # ./modules/hyprland.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
-    # (import ./modules/hyprland.nix { inherit config lib pkgs configDir; })
+    (import ./modules/hyprland.nix { inherit config pkgs configDir; })
   ];
 
   home.sessionVariables = {
