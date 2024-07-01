@@ -1,14 +1,36 @@
-{ ... }:
+# { ... }:
 # { config, configDir, ... }:
+# {
+#   programs.wezterm = {
+#     enable = true;
+#   };
+#
+#   # xdg.configFile = {
+#   #   wezterm = {
+#   #     source = config.lib.file.mkOutOfStoreSymlink "${configDir}/wezterm";
+#   #     recursive = true;
+#   #   };
+#   # };
+# }
+
+{ pkgs, lib, config, ... }:
+with lib;
+let
+  cfg = config.hm-modules.terminal-emulator.wezterm;
+in
 {
-  programs.wezterm = {
-    enable = true;
+  options.hm-modules.terminal-emulator.wezterm = {
+    enable = mkEnableOption "wezterm";
   };
 
-  # xdg.configFile = {
-  #   wezterm = {
-  #     source = config.lib.file.mkOutOfStoreSymlink "${configDir}/wezterm";
-  #     recursive = true;
-  #   };
-  # };
+  config = nkIf cfg.enable
+    {
+      programs.wezterm = {
+        enable = true;
+        package = pkgs.wezterm;
+        extraConfig = ''
+
+        '';
+      };
+    };
 }
