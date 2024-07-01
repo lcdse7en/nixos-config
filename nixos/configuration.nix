@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -17,7 +18,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -36,9 +37,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -61,13 +59,13 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.se7en = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "users" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       vim
       git
     ];
     shell = pkgs.fish;
- };
+  };
 
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
@@ -122,8 +120,8 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  nix.settings.substituters = lib.mkForce ["https://mirrors.tuna.tsinghua.edu.cn/channels/store"];
-  
+  nix.settings.substituters = lib.mkForce [ "https://mirrors.tuna.tsinghua.edu.cn/channels/store" ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -132,4 +130,3 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
-

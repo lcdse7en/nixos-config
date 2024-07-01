@@ -1,17 +1,22 @@
-{ pkgs, configDir, ... }:
+{ config, pkgs, configDir, ... }:
 {
-  programs.hyprland.enaable = true;
-
-  environment.systemPackages = with pkgs; [
-    swww
-  ];
-
-  xdg.configFile = {
-    hypr = {
-      source = config.lib.file.mkOutOfStoreSymlink "${configDir}/hypr";
-      recursive = true;
-    };
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = pkgs.hyprland;
+    xwayland.enable = true;
+    systemd.enable = true;
   };
+
+  # home.packages = with pkgs; [
+  #   swww
+  # ];
+  #
+  # xdg.configFile = {
+  #   hypr = {
+  #     source = config.lib.file.mkOutOfStoreSymlink "${configDir}/hypr";
+  #     recursive = true;
+  #   };
+  # };
 
   #  extraPackages = with pkgs; [
   #   nodePackages.pyright

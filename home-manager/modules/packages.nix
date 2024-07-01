@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
   unstable = with pkgs; [
+    wget
+    curl
     gcc
     lazygit
     ripgrep
