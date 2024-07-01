@@ -40,7 +40,8 @@ in
     ./modules/hyprland.nix
 
     (import ./modules/nvim.nix { inherit config lib pkgs configDir; })
-    (import ./modules/yazi.nix { inherit config lib pkgs configDir; })
+    (import ./modules/yazi.nix { inherit config configDir; })
+    (import ./modules/hyprland.nix { inherit config configDir; })
     # (import ./modules/hyprland.nix { inherit config pkgs configDir; })
   ];
 
