@@ -3,6 +3,7 @@ let
   unstable = with pkgs; [
     wget
     curl
+    kitty
     gcc
     lazygit
     ripgrep

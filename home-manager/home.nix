@@ -30,6 +30,8 @@ in
     }))
   ];
 
+  programs = { };
+
   imports = [
     ./modules/git.nix
     ./modules/fish.nix
