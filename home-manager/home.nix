@@ -30,13 +30,6 @@ in
     }))
   ];
 
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-  };
-
   imports = [
     ./modules/git.nix
     ./modules/fish.nix
