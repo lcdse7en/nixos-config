@@ -83,11 +83,11 @@
       vim
       git
     ];
-    shell = pkgs.fish;
+    # shell = pkgs.fish;
   };
 
-  programs.fish.enable = true;
-  environment.shells = with pkgs; [ fish ];
+  # programs.fish.enable = true;
+  # environment.shells = with pkgs; [ fish ];
 
   programs.hyprland.enable = true;
 

@@ -49,10 +49,11 @@ in
       }];
 
       shellAbbrs = abbr;
-      shellAliases = aliases // pkgs.lib.optionalAttrs isLinux {
-        cfgnix = "sudo nvim /etc/nixos/configuration.nix";
-        restart-gui = "sudo systemctl restart display-manager.service";
-      };
+      shellAliases = aliases;
+      # shellAliases = aliases // pkgs.lib.optionalAttrs isLinux {
+      #   cfgnix = "sudo nvim /etc/nixos/configuration.nix";
+      #   restart-gui = "sudo systemctl restart display-manager.service";
+      # };
 
       shellInit = ''
         set -g fish_prompt_pwd_dir_length 20
