@@ -33,7 +33,6 @@ in
       [
         # obsidian # re-enable when the nixpkgs package is fixed
         mdbook
-        spotify
         gnumake
       ] ++ lib.lists.optionals isDarwin [
         # put macOS specific packages here
@@ -42,20 +41,20 @@ in
         # put Linux specific packages here
         # vesktop discord client, I don't like
         # vesktop's icon, so override it
-        (vesktop.overrideAttrs (oldAttrs: {
-          desktopItems = [
-            (makeDesktopItem {
-              name = "vesktop";
-              desktopName = "Vesktop";
-              exec = "vesktop %U";
-              icon = "discord";
-              startupWMClass = "Vesktop";
-              genericName = "Internet Messenger";
-              keywords = [ "discord" "vencord" "electron" "chat" ];
-              categories = [ "Network" "InstantMessaging" "Chat" ];
-            })
-          ];
-        }))
+        # (vesktop.overrideAttrs (oldAttrs: {
+        #   desktopItems = [
+        #     (makeDesktopItem {
+        #       name = "vesktop";
+        #       desktopName = "Vesktop";
+        #       exec = "vesktop %U";
+        #       icon = "discord";
+        #       startupWMClass = "Vesktop";
+        #       genericName = "Internet Messenger";
+        #       keywords = [ "discord" "vencord" "electron" "chat" ];
+        #       categories = [ "Network" "InstantMessaging" "Chat" ];
+        #     })
+        #   ];
+        # }))
         signal-desktop
         qbittorrent
         vlc
@@ -63,7 +62,7 @@ in
         r2modman
       ];
     file."${config.home.homeDirectory}/.xprofile".text = ''
-      export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/mat/.nix-profile/share"
+      export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/se7en/.nix-profile/share"
     '';
   };
 

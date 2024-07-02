@@ -14,6 +14,25 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  hardware = {
+    # use proprietary nvidia drivers
+    graphics.enable = true;
+    nvidia = {
+      # workaround for Steam new UI bug, change this back to `config.boot.kernelPackages.nvidiaPackages.stable` in the future.
+      # see: https://wiki.archlinux.org/title/Steam/Troubleshooting#Steam_window_does_not_show_on_Nvidia_GPUs_after_the_June_14,_2023_update
+      # see last answer here: https://discourse.nixos.org/t/using-older-revisions-of-nvidia-drivers/28645
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      modesetting.enable = true;
+      nvidiaPersistenced = true;
+    };
+
+    # logitech mouse support
+    logitech.wireless = {
+      enable = true;
+      # installs solaar for configuring mouse buttons
+      enableGraphical = true;
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -36,7 +55,7 @@
   # };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

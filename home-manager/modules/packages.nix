@@ -25,6 +25,7 @@ let
     ncmpcpp
     smug
     nsxiv
+    lua
 
     # hyprland
     # waybar
