@@ -16,6 +16,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,7 +26,7 @@
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, flake-utils, ... }@inputs:
     let
       system = "x86_64-linux";
     in
@@ -51,6 +52,19 @@
           ./home-manager/modules/fonts.nix
           ./home-manager/modules/ssh.nix
           ./home-manager/modules/fish.nix
+        ];
+      };
+
+      packages.default = pkgs.callPackage ./. { inherit pkgs; };
+      devShell = pkgs.mkShell {
+        CARGO_INSTALL_ROOT = "${toString ./.}/.cargo";
+        buildInputs = with pkgs; [
+          cargo
+          rustc
+          git
+          clippy
+          rust-analyzer
+          libiconv
         ];
       };
     };
