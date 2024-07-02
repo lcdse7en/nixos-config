@@ -12,15 +12,50 @@
     keep-derivations = true
   '';
 
+  environment.systemPackages = [ pkgs.mullvad-vpn ];
+
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
+  services = {
+    mullvad-vpn.enable = true;
+
+    # Configure keymap in X11
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      # bootloader
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
   hardware = {
     # use proprietary nvidia drivers
     graphics.enable = true;
