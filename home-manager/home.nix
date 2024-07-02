@@ -2,6 +2,8 @@
 , config
 , pkgs
 , lib
+, isLinux
+, isDarwin
 , ...
 }:
 let
