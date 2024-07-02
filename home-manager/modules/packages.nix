@@ -27,7 +27,7 @@ let
     nsxiv
 
     # hyprland
-    waybar
+    # waybar
     swww
     wlogout
     slurp
