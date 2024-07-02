@@ -71,6 +71,7 @@ in
   };
 
   imports = [
+    ./shared.nix
     ./modules/git.nix
     ./modules/fastfetch.nix
     ./modules/starship.nix

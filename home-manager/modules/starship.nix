@@ -1,110 +1,86 @@
-let
-  lang = icon: color: {
-    symbol = icon;
-    format = "[$symbol ](${color})";
-  };
-  os = icon: fg: "[${icon} ](fg:${fg})";
-  pad = {
-    left = "";
-    right = "";
-  };
-in
-{
+{ lib, isServer, ... }: {
+  programs.fish.functions.starship_transient_prompt_func = ''
+    set -l dir $(starship module directory)
+    set -l dir $(string trim "$dir")
+    set -l branch $(starship module git_branch)
+    set -l branch $(string trim "$branch")
+    set -l icon $(starship module custom.git_server_icon)
+    echo "$dir $icon$branch $(printf "\e[1;32m❯\e[0m ")"
+  '';
   programs.starship = {
     enable = true;
+    enableTransience = true;
     settings = {
-      command_timeout = 500;
-      add_newline = true;
-      format = builtins.concatStringsSep "" [
-        "$nix_shell"
-        "$os"
+      format = lib.concatStrings [
+        "$username"
+        "$hostname"
         "$directory"
-        "$container"
-        "$git_branch $git_status"
+        "\${custom.git_server_icon}"
+        "$git_branch"
+        "$git_status"
+        "\${custom.nix_shell}"
+        "\${custom.direnv} "
         "$python"
-        "$nodejs"
-        "$lua"
-        "$rust"
-        "$java"
-        "$c"
-        "$golang"
-        "$cmd_duration"
-        "$status"
         "$line_break"
-        "[❯](bold purple)"
-        ''''${custom.space}''
+        "$character"
       ];
-      custom.space = {
-        when = ''! test $env'';
-        format = "  ";
+      right_format = "$cmd_duration";
+      username = { show_always = isServer; };
+      character = {
+        success_symbol = "[ I ](bold bg:#40a02b fg:#000000)[](fg:#40a02b)";
+        error_symbol = "[ I ](bold bg:#f38ba8 fg:#000000)[](fg:#f38ba8)";
+        vicmd_symbol = "[ N ](bold bg:#40a02b fg:#000000)[](fg:#40a02b)";
+        vimcmd_replace_one_symbol =
+          "[ R ](bold bg:#cba6f8 fg:#000000)[](fg:#cba6f8)";
+        vimcmd_replace_symbol =
+          "[ R ](bold bg:#cba6f8 fg:#000000)[](fg:#cba6f8)";
+        vimcmd_visual_symbol =
+          "[ V ](bold bg:#f9e2af fg:#000000)[](fg:#f9e2af)";
       };
-      continuation_prompt = "∙  ┆ ";
-      line_break = { disabled = false; };
-      status = {
-        symbol = "✗";
-        not_found_symbol = "󰍉 Not Found";
-        not_executable_symbol = " Can't Execute E";
-        sigint_symbol = "󰂭 ";
-        signal_symbol = "󱑽 ";
-        success_symbol = "";
-        format = "[$symbol](fg:red)";
-        map_symbol = true;
-        disabled = false;
+      git_branch = {
+        symbol = "";
+        style = "bold #f74e27"; # git brand color
+        format = "[$symbol$branch(:$remote_branch)]($style) ";
       };
       cmd_duration = {
-        min_time = 1000;
-        format = "[$duration ](fg:yellow)";
+        format = "[ $duration]($style)";
+        style = "bold #586068";
       };
-      nix_shell = {
-        disabled = false;
-        format = "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
+      directory = { read_only = " 󰌾"; };
+      git_commit = { disabled = true; };
+      git_state = { disabled = true; };
+      git_metrics = { disabled = true; };
+      python = {
+        format = "[\${symbol}\${virtualenv}]($style)";
+        symbol = " ";
+        pyenv_version_name = true;
       };
-      container = {
-        symbol = " 󰏖";
-        format = "[$symbol ](yellow dimmed)";
+      custom = {
+        git_server_icon = {
+          description =
+            "Show a GitLab or GitHub icon depending on current git remote";
+          when = "git rev-parse --is-inside-work-tree 2> /dev/null";
+          command = ''
+            GIT_REMOTE=$(git ls-remote --get-url 2> /dev/null); if [[ "$GIT_REMOTE" =~ "github" ]]; then printf "\e[1;37m\e[0m"; elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then echo ""; else echo "󰊢"; fi'';
+          shell = [ "bash" "--noprofile" "--norc" ];
+          style = "bold #f74e27"; # git brand color
+          format = "[$output]($style) ";
+        };
+        nix_shell = {
+          description = "Show an indicator when inside a Nix ephemeral shell";
+          when = ''[ "$IN_NIX_SHELL" != "" ]'';
+          shell = [ "bash" "--noprofile" "--norc" ];
+          style = "bold #6ec2e8";
+          format = "[ ]($style)";
+        };
+        direnv = {
+          description = "Show '.envrc' when using a direnv environment";
+          when = ''[ "$DIRENV_DIR" != "" ] && [ "$IN_NIX_SHELL" != "" ]'';
+          shell = [ "bash" "--noprofile" "--norc" ];
+          style = "italic #f9e2af";
+          format = "[via](italic #586068) [.envrc]($style)";
+        };
       };
-      directory = {
-        format = " [${pad.left}](fg:bright-black)[$path](bg:bright-black fg:white)[${pad.right}](fg:bright-black)";
-        truncation_length = 6;
-        truncation_symbol = ".../";
-      };
-      # directory.substitutions = {
-      #   "Documents" = "󰈙 ";
-      #   "Downloads" = " ";
-      #   "Music" = " ";
-      #   "Pictures" = " ";
-      #   "Videos" = " ";
-      #   "Projects" = "󱌢 ";
-      #   "College" = "󰑴 ";
-      #   ".config" = " ";
-      #   "Vault" = "󱉽 ";
-      # };
-      git_branch = {
-        symbol = "";
-        style = "";
-        format = "[ $symbol $branch](fg:purple)(:$remote_branch)";
-      };
-      os = {
-        disabled = false;
-        format = "$symbol";
-      };
-      os.symbols = {
-        Arch = os "" "bright-blue";
-        Debian = os "" "red)";
-        EndeavourOS = os "" "purple";
-        Fedora = os "" "blue";
-        NixOS = os "" "blue";
-        openSUSE = os "" "green";
-        SUSE = os "" "green";
-        Ubuntu = os "" "bright-purple";
-      };
-      python = lang "" "yellow";
-      nodejs = lang " " "yellow";
-      lua = lang "󰢱" "blue";
-      rust = lang "" "red";
-      java = lang "" "red";
-      c = lang "" "blue";
-      golang = lang "" "blue";
     };
   };
 }

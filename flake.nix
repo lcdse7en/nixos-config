@@ -66,7 +66,7 @@
             }
             ./home-manager/modules/fonts.nix
             ./home-manager/modules/ssh.nix
-            ./home-manager/modules/fish.nix
+            # ./home-manager/modules/fish.nix
           ];
         };
       };
