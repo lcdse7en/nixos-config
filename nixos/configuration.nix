@@ -5,6 +5,13 @@
 { config, lib, pkgs, ... }:
 
 {
+
+  # See https://github.com/nix-community/nix-direnv
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
   imports =
     [
       # Include the results of the hardware scan.
@@ -47,12 +54,23 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -77,17 +95,21 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.se7en = {
+    shell = pkgs.fish;
     isNormalUser = true;
+    home = "/home/se7en";
     extraGroups = [ "networkmanager" "wheel" "users" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       vim
       git
     ];
-    # shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsT6GLG7sY8YKX7JM+jqS3EAti3YMzwHKWViveqkZvu"
+    ];
   };
 
-  # programs.fish.enable = true;
-  # environment.shells = with pkgs; [ fish ];
+  programs.fish.enable = true;
+  environment.shells = with pkgs; [ fish ];
 
   programs.hyprland.enable = true;
 
