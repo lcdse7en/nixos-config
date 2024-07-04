@@ -43,7 +43,6 @@
       # hyprland
       swww
       dunst
-      nm-applet
       hyprpaper
     ];
   };

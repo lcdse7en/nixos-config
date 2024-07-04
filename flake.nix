@@ -67,7 +67,7 @@
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";
