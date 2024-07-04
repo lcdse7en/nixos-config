@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
   flakePath = "~/nixos-config";
   abbr = {
@@ -18,7 +18,6 @@ let
     ll = "ls -l --git";
     l = "ls -laH";
     lg = "ls -lG";
-    clear = "clear && _prompt_move_to_bottom";
     oplocal =
       "./js/oph/dist/mac-arm64/1Password.app/Contents/MacOS/1Password";
     # inspect $PATH

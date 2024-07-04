@@ -91,7 +91,7 @@ in
   # };
   wayland.windowManager.hyprland = {
     extraConfig = ''
-      $mainMod = ALT
+      $mainMod = SUPER
       # $scripts=$HOME/.config/hypr/scripts
 
       monitor=,preferred,auto,1
