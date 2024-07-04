@@ -7,6 +7,7 @@
       #-----------------------#
       # wall(by swww service) #
       #-----------------------#
+      exec-once =  systemctl --user start graphical-session.target
       exec-once = swww init
       exec = sleep 0.5 && default_wallpaper
 
@@ -223,8 +224,8 @@
       #-------------------------------#
       # special workspace(scratchpad) #
       #-------------------------------#
-      bind = $mainMod, minus, movetoworkspace,special
-      bind = $mainMod, equal, togglespecialworkspace
+      bind = $mainMod, S, togglespecialworkspace,
+      bind = $mainMod SHIFT, S, movetoworkspacesilent, special
 
       #----------------------------------#
       # move window in current workspace #
@@ -330,6 +331,13 @@
       bind=CTRL SHIFT, k, resizeactive, 0 -15
       bind=CTRL SHIFT, j, resizeactive, 0 15
 
+      # Screenshot/Screencapture
+      # bind = $mainMod, P, exec, ~/.config/hypr/scripts/screenshot.sh s # drag to snip an area / click on a window to print it
+      bind = $mainMod, N, exec, ~/.config/hypr/scripts/screenshot.sh sf # frozen screen, drag to snip an area / click on a window to print it
+      bind = $mainMod SHIFT, N, exec, ~/.config/hypr/scripts/screenshot.sh m # print focused monitor
+      bind = ,print, exec, ~/.config/hypr/scripts/screenshot.sh p  # print all monitor outputs
+      bind = $mainMod, INSERT, exec, hyprshot -m output -o ~/Pictures/Screenshots -f captura-$(date +'%Y-%m-%d-%s').png
+
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
@@ -349,9 +357,9 @@
 
       windowrulev2 = opacity 0.90 0.90,class:^(firefox)$
       windowrulev2 = opacity 0.90 0.90,class:^(Brave-browser)$
-      # windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
+      windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
 
-      # windowrule=opacity 0.8,kitty
+      windowrule=opacity 0.8,kitty
       windowrule=float,title:^(Picture-in-Picture)$
       windowrule=size 960 540,title:^(Picture-in-Picture)$
       windowrule=move 25%-,title:^(Picture-in-Picture)$
