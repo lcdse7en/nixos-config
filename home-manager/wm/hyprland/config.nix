@@ -91,14 +91,25 @@
           }
       }
 
+      # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+      # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
+
+      # See https://wiki.hyprland.org/Configuring/Animations/
+
       animations {
-        enabled=1
-        bezier = overshot, 0.13, 0.99, 0.29, 1.1
-        animation = windows, 1, 4, overshot, slide
-        animation = windowsOut, 1, 5, default, popin 80%
-        animation = border, 1, 5, default
-        animation = fade, 1, 8, default
-        animation = workspaces, 1, 6, overshot, slidevert
+        enabled = yes
+        bezier = wind, 0.05, 0.9, 0.1, 1.05
+        bezier = winIn, 0.1, 1.1, 0.1, 1.1
+        bezier = winOut, 0.3, -0.3, 0, 1
+        bezier = liner, 1, 1, 1, 1
+        animation = windows, 1, 6, wind, slide
+        animation = windowsIn, 1, 6, winIn, slide
+        animation = windowsOut, 1, 5, winOut, slide
+        animation = windowsMove, 1, 5, wind, slide
+        animation = border, 1, 1, liner
+        animation = borderangle, 1, 30, liner, loop
+        animation = fade, 1, 10, default
+        animation = workspaces, 1, 5, wind
       }
 
       gestures {
@@ -321,9 +332,17 @@
       # auto start #
       #------------#
       exec-once = mako &
-      # windows rules #
-      #---------------#
+
+      # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
+      # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
+
+      # See https://wiki.hyprland.org/Configuring/Window-Rules/
       #`hyprctl clients` get class、title...
+
+      windowrulev2 = opacity 0.90 0.90,class:^(firefox)$
+      windowrulev2 = opacity 0.90 0.90,class:^(Brave-browser)$
+      windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
+
       windowrule=float,title:^(Picture-in-Picture)$
       windowrule=size 960 540,title:^(Picture-in-Picture)$
       windowrule=move 25%-,title:^(Picture-in-Picture)$
