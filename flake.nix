@@ -71,6 +71,7 @@
     let
       user = "se7en";
       system = "x86_64-linux";
+      selfPkgs = import ./pkgs;
     in
     {
       nixosConfigurations = {

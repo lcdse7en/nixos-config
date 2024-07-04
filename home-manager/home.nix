@@ -38,6 +38,8 @@ in
     ./programs
     ./packages
 
+    # ./dev
+
     ./wm/hyprland
 
     (import ./editors/neovim { inherit config configDir; })

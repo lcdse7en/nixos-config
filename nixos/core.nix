@@ -26,6 +26,9 @@
       gofumpt
       gcc
       clang
+      cmake
+      meson
+      ninja
       git
       wget
       bat
