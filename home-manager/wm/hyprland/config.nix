@@ -33,11 +33,11 @@
       }
 
       general {
-        gaps_in = 3
-        gaps_out = 5
-        border_size = 3
-        col.active_border = rgb(81a1c1)
-        col.inactive_border = rgba(595959aa)
+        gaps_in = 3       # 窗口之间的间隙大小
+        gaps_out = 5      # 窗口与显示器边缘的间隙大小
+        border_size = 2   # 窗口边框的宽度
+        col.active_border = rgba(cceeffbb)    # 活动窗口的边框颜色
+        col.inactive_border = rgba(595959aa) # 非活动窗口的边框颜色
 
         layout = dwindle # master|dwindle
       }
@@ -86,18 +86,6 @@
           }
       }
 
-      # animations {
-      #   enabled = yes
-      #
-      #   bezier = easeOutElastic, 0.05, 0.9, 0.1, 1.05
-      #   # bezier=overshot,0.05,0.9,0.1,1.1
-      #
-      #   animation = windows, 1, 5, easeOutElastic
-      #   animation = windowsOut, 1, 5, default, popin 80%
-      #   animation = border, 1, 8, default
-      #   animation = fade, 1, 5, default
-      #   animation = workspaces, 1, 6, default
-      # }
       animations {
         enabled=1
         bezier = overshot, 0.13, 0.99, 0.29, 1.1
