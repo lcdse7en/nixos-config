@@ -160,6 +160,9 @@
       #-------------------------------#
       bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, Q, exit, # kill hyperland session
+      bind = $mainMod, F, fullscreen, 1 # toggle the window on focus to fullscreen
+      bind = $mainMod SHIFT, F, fullscreen, 0 # toggle the window on focus to fullscreen
+      bind = $mainMod SHIFT, Z, exec, swaylock # lock screen
 
       # ======================================================================
       # Open Browser
@@ -176,7 +179,6 @@
       bind = $mainMod, Return, exec, kitty
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
       bind = $mainMod SHIFT, Space, togglefloating,
-      bind = $mainMod,F,fullscreen
       bind = $mainMod,Y,pin
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
