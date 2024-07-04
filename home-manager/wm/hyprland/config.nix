@@ -3,6 +3,8 @@
   wayland.windowManager.hyprland = {
     extraConfig = ''
       $mainMod = SUPER
+      $browser = brave
+
       # $scripts=$HOME/.config/hypr/scripts
 
       monitor=,preferred,auto,1
@@ -127,9 +129,23 @@
         focus_on_activate = true
       }
 
-      # Window/Session actions
+      #-------------------------------#
+      # Window/Session actions        #
+      #-------------------------------#
       bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, Q, exit, # kill hyperland session
+
+      # ======================================================================
+      # Open Browser
+      # ======================================================================
+      bind = $mainMod, W, exec, $browser # open browser
+      bind = $mainMod SHIFT, W, exec, $browser https://github.com/lcdse7en # se7en github
+      bind = $mainMod, B, exec, $browser  https://www.bilibili.com/ # bilibili
+      bind = $mainMod SHIFT, B, exec, $browser https://member.bilibili.com/platform/upload-manager/article # bilibili
+      bind = $mainMod, F5, exec, $browser https://www.ijujitv.cc/show/1-----------2023.html # korea tv
+      bind = $mainMod, F6, exec, $browser https://m.weibo.cn/u/1965284462 # korea movie weibo
+      bind = $mainMod, F7, exec, $browser https://www.kpopn.com/category/news # kpopn
+      bind = $mainMod, F8, exec, emacs  # open emacs
 
       bind = $mainMod, Return, exec, kitty
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
