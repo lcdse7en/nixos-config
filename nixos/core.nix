@@ -39,6 +39,9 @@
       # rar
       ffmpeg
       sops
+
+      # hyprland
+      hyprpaper
     ];
   };
 

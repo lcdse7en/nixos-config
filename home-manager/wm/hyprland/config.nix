@@ -294,6 +294,7 @@
       # wall(by swww service) #
       #-----------------------#
       # exec-once = default_wall
+      exec-once = hyprpaper
 
       #------------#
       # auto start #
