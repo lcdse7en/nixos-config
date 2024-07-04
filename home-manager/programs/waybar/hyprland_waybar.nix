@@ -19,182 +19,173 @@ in
           min-height: 10px;
       }
 
-      @define-color bar-bg rgba(0, 0, 0, 0);
+      @import "theme.css";
 
-      @define-color main-bg #11111b;
-      @define-color main-fg #cdd6f4;
+      window#waybar {
+          background: @bar-bg;
+      }
 
-      @define-color wb-act-bg #a6adc8;
-      @define-color wb-act-fg #313244;
+      tooltip {
+          background: @main-bg;
+          color: @main-fg;
+          border-radius: 7px;
+          border-width: 0px;
+      }
 
-      @define-color wb-hvr-bg #f5c2e7;
-      @define-color wb-hvr-fg #313244;
+      #workspaces button {
+          box-shadow: none;
+      	text-shadow: none;
+          padding: 0px;
+          border-radius: 9px;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          margin-left: 0px;
+          padding-left: 3px;
+          padding-right: 3px;
+          margin-right: 0px;
+          color: @main-fg;
+          animation: ws_normal 20s ease-in-out 1;
+      }
 
-            window#waybar {
-                background: @bar-bg;
-            }
+      #workspaces button.active {
+          background: @wb-act-bg;
+          color: @wb-act-fg;
+          margin-left: 3px;
+          padding-left: 12px;
+          padding-right: 12px;
+          margin-right: 3px;
+          animation: ws_active 20s ease-in-out 1;
+          transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+      }
 
-            tooltip {
-                background: @main-bg;
-                color: @main-fg;
-                border-radius: 7px;
-                border-width: 0px;
-            }
+      #workspaces button:hover {
+          background: @wb-hvr-bg;
+          color: @wb-hvr-fg;
+          animation: ws_hover 20s ease-in-out 1;
+          transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+      }
 
-            #workspaces button {
-                box-shadow: none;
-            	text-shadow: none;
-                padding: 0px;
-                border-radius: 9px;
-                margin-top: 3px;
-                margin-bottom: 3px;
-                margin-left: 0px;
-                padding-left: 3px;
-                padding-right: 3px;
-                margin-right: 0px;
-                color: @main-fg;
-                animation: ws_normal 20s ease-in-out 1;
-            }
+      #taskbar button {
+          box-shadow: none;
+      	text-shadow: none;
+          padding: 0px;
+          border-radius: 9px;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          margin-left: 0px;
+          padding-left: 3px;
+          padding-right: 3px;
+          margin-right: 0px;
+          color: @wb-color;
+          animation: tb_normal 20s ease-in-out 1;
+      }
 
-            #workspaces button.active {
-                background: @wb-act-bg;
-                color: @wb-act-fg;
-                margin-left: 3px;
-                padding-left: 12px;
-                padding-right: 12px;
-                margin-right: 3px;
-                animation: ws_active 20s ease-in-out 1;
-                transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
-            }
+      #taskbar button.active {
+          background: @wb-act-bg;
+          color: @wb-act-color;
+          margin-left: 3px;
+          padding-left: 12px;
+          padding-right: 12px;
+          margin-right: 3px;
+          animation: tb_active 20s ease-in-out 1;
+          transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+      }
 
-            #workspaces button:hover {
-                background: @wb-hvr-bg;
-                color: @wb-hvr-fg;
-                animation: ws_hover 20s ease-in-out 1;
-                transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-            }
+      #taskbar button:hover {
+          background: @wb-hvr-bg;
+          color: @wb-hvr-color;
+          animation: tb_hover 20s ease-in-out 1;
+          transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+      }
 
-            #taskbar button {
-                box-shadow: none;
-            	text-shadow: none;
-                padding: 0px;
-                border-radius: 9px;
-                margin-top: 3px;
-                margin-bottom: 3px;
-                margin-left: 0px;
-                padding-left: 3px;
-                padding-right: 3px;
-                margin-right: 0px;
-                color: @wb-color;
-                animation: tb_normal 20s ease-in-out 1;
-            }
+      #tray menu * {
+          min-height: 16px
+      }
 
-            #taskbar button.active {
-                background: @wb-act-bg;
-                color: @wb-act-color;
-                margin-left: 3px;
-                padding-left: 12px;
-                padding-right: 12px;
-                margin-right: 3px;
-                animation: tb_active 20s ease-in-out 1;
-                transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
-            }
+      #tray menu separator {
+          min-height: 10px
+      }
 
-            #taskbar button:hover {
-                background: @wb-hvr-bg;
-                color: @wb-hvr-color;
-                animation: tb_hover 20s ease-in-out 1;
-                transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-            }
+      #backlight,
+      #battery,
+      #bluetooth,
+      #custom-cliphist,
+      #clock,
+      #custom-cpuinfo,
+      #cpu,
+      #custom-gpuinfo,
+      #idle_inhibitor,
+      #custom-keybindhint,
+      #language,
+      #memory,
+      #mpris,
+      #network,
+      #custom-notifications,
+      #custom-power,
+      #pulseaudio,
+      #custom-spotify,
+      #taskbar,
+      #custom-theme,
+      #tray,
+      #custom-updates,
+      #custom-wallchange,
+      #custom-wbar,
+      #window,
+      #workspaces,
+      #custom-l_end,
+      #custom-r_end,
+      #custom-sl_end,
+      #custom-sr_end,
+      #custom-rl_end,
+      #custom-rr_end {
+          color: @main-fg;
+          background: @main-bg;
+          opacity: 1;
+          margin: 4px 0px 4px 0px;
+          padding-left: 4px;
+          padding-right: 4px;
+      }
 
-            #tray menu * {
-                min-height: 16px
-            }
+      #workspaces,
+      #taskbar {
+          padding: 0px;
+      }
 
-            #tray menu separator {
-                min-height: 10px
-            }
+      #custom-r_end {
+          border-radius: 0px 21px 21px 0px;
+          margin-right: 9px;
+          padding-right: 3px;
+      }
 
-            #backlight,
-            #battery,
-            #bluetooth,
-            #custom-cliphist,
-            #clock,
-            #custom-cpuinfo,
-            #cpu,
-            #custom-gpuinfo,
-            #idle_inhibitor,
-            #custom-keybindhint,
-            #language,
-            #memory,
-            #mpris,
-            #network,
-            #custom-notifications,
-            #custom-power,
-            #pulseaudio,
-            #custom-spotify,
-            #taskbar,
-            #custom-theme,
-            #tray,
-            #custom-updates,
-            #custom-wallchange,
-            #custom-wbar,
-            #window,
-            #workspaces,
-            #custom-l_end,
-            #custom-r_end,
-            #custom-sl_end,
-            #custom-sr_end,
-            #custom-rl_end,
-            #custom-rr_end {
-                color: @main-fg;
-                background: @main-bg;
-                opacity: 1;
-                margin: 4px 0px 4px 0px;
-                padding-left: 4px;
-                padding-right: 4px;
-            }
+      #custom-l_end {
+          border-radius: 21px 0px 0px 21px;
+          margin-left: 9px;
+          padding-left: 3px;
+      }
 
-            #workspaces,
-            #taskbar {
-                padding: 0px;
-            }
+      #custom-sr_end {
+          border-radius: 0px;
+          margin-right: 9px;
+          padding-right: 3px;
+      }
 
-            #custom-r_end {
-                border-radius: 0px 21px 21px 0px;
-                margin-right: 9px;
-                padding-right: 3px;
-            }
+      #custom-sl_end {
+          border-radius: 0px;
+          margin-left: 9px;
+          padding-left: 3px;
+      }
 
-            #custom-l_end {
-                border-radius: 21px 0px 0px 21px;
-                margin-left: 9px;
-                padding-left: 3px;
-            }
+      #custom-rr_end {
+          border-radius: 0px 7px 7px 0px;
+          margin-right: 9px;
+          padding-right: 3px;
+      }
 
-            #custom-sr_end {
-                border-radius: 0px;
-                margin-right: 9px;
-                padding-right: 3px;
-            }
-
-            #custom-sl_end {
-                border-radius: 0px;
-                margin-left: 9px;
-                padding-left: 3px;
-            }
-
-            #custom-rr_end {
-                border-radius: 0px 7px 7px 0px;
-                margin-right: 9px;
-                padding-right: 3px;
-            }
-
-            #custom-rl_end {
-                border-radius: 7px 0px 0px 7px;
-                margin-left: 9px;
-                padding-left: 3px;
-            }
+      #custom-rl_end {
+          border-radius: 7px 0px 0px 7px;
+          margin-left: 9px;
+          padding-left: 3px;
+      }
     '';
 
     settings = [{
@@ -272,108 +263,118 @@ in
         "interval" = 86400;
         "tooltip" = true;
       };
+      "custom/theme" = {
+        "format" = "{}";
+        "rotate" = 0;
+        "exec" = "echo ; echo 󰟡 switch theme";
+        "on-click" = "themeswitch.sh -n";
+        "on-click-right" = "themeswitch.sh -p";
+        "on-click-middle" = "sleep 0.1 && themeselect.sh";
+        "interval" = 86400; #// once every day
+        "tooltip" = true;
+      };
+      "custom/wallchange" = {
+        "format" = "{}";
+        "rotate" = 0;
+        "exec" = "echo ; echo 󰆊 switch wallpaper";
+        "on-click" = "swwwallpaper.sh -n";
+        "on-click-right" = "swwwallpaper.sh -p";
+        "on-click-middle" = "sleep 0.1 && swwwallselect.sh";
+        "interval" = 86400; #// once every day
+        "tooltip" = true;
+      };
+      "clock" = {
+        "format" = "{:%I:%M %p}";
+        "rotate" = 0;
+        "format-alt" = "{:%R 󰃭 %d·%m·%y}";
+        "tooltip-format" = "<tt>{calendar}</tt>";
+        "calendar" = {
+          "mode" = "month";
+          "mode-mon-col" = 3;
+          "on-scroll" = 1;
+          "on-click-right" = "mode";
+          "format" = {
+            "months" = "<span color='#ffead3'><b>{}</b></span>";
+            "weekdays" = "<span color='#ffcc66'><b>{}</b></span>";
+            "today" = "<span color='#ff6699'><b>{}</b></span>";
+          };
+        };
+        "actions" = {
+          "on-click-right" = "mode";
+          "on-click-forward" = "tz_up";
+          "on-click-backward" = "tz_down";
+          "on-scroll-up" = "shift_up";
+          "on-scroll-down" = "shift_down";
+        };
+      };
 
-      # "custom/launcher" = {
-      #   "format" = " ";
-      #   "on-click" = "~/.config/rofi/launcher.sh";
-      #   "tooltip" = false;
-      # };
-      # "custom/wall" = {
-      #   "on-click" = "${sharedScripts.wallpaper_random}/bin/wallpaper_random";
-      #   "on-click-middle" = "${sharedScripts.default_wall}/bin/default_wall";
-      #   "on-click-right" = "killall dynamic_wallpaper || ${sharedScripts.dynamic_wallpaper}/bin/dynamic_wallpaper &";
-      #   "format" = " 󰠖 ";
-      #   "tooltip" = false;
-      # };
-      # "custom/cava-internal" = {
-      #   "exec" = "sleep 1s && ${sharedScripts.cava-internal}/bin/cava-internal";
-      #   "tooltip" = false;
-      # };
-      # "sway/workspaces" = {
-      #   "disable-scroll" = true;
-      # };
-      # "backlight" = {
-      #   "device" = "intel_backlight";
-      #   "on-scroll-up" = "light -A 5";
-      #   "on-scroll-down" = "light -U 5";
-      #   "format" = "{icon} {percent}%";
-      #   "format-icons" = [ "󰃝" "󰃞" "󰃟" "󰃠" ];
-      # };
-      # "pulseaudio" = {
-      #   "scroll-step" = 1;
-      #   "format" = "{icon} {volume}%";
-      #   "format-muted" = "󰖁 Muted";
-      #   "format-icons" = {
-      #     "default" = [ "" "" "" ];
-      #   };
-      #   "on-click" = "pamixer -t";
-      #   "tooltip" = false;
-      # };
-      # "battery" = {
-      #   "interval" = 10;
-      #   "states" = {
-      #     "warning" = 20;
-      #     "critical" = 10;
-      #   };
-      #   "format" = "{icon} {capacity}%";
-      #   "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-      #   "format-full" = "{icon} {capacity}%";
-      #   "format-charging" = "󰂄 {capacity}%";
-      #   "tooltip" = false;
-      # };
-      # "clock" = {
-      #   "interval" = 1;
-      #   "format" = "{:%I:%M %p  %A %b %d}";
-      #   "tooltip" = true;
-      #   "tooltip-format" = "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
-      # };
-      # "memory" = {
-      #   "interval" = 1;
-      #   "format" = "󰍛 {percentage}%";
-      #   "states" = {
-      #     "warning" = 85;
-      #   };
-      # };
-      # "cpu" = {
-      #   "interval" = 1;
-      #   "format" = "󰻠 {usage}%";
-      # };
-      # "mpd" = {
-      #   "max-length" = 25;
-      #   "format" = "<span foreground='#bb9af7'></span> {title}";
-      #   "format-paused" = " {title}";
-      #   "format-stopped" = "<span foreground='#bb9af7'></span>";
-      #   "format-disconnected" = "";
-      #   "on-click" = "mpc --quiet toggle";
-      #   "on-click-right" = "mpc update; mpc ls | mpc add";
-      #   "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp";
-      #   "on-scroll-up" = "mpc --quiet prev";
-      #   "on-scroll-down" = "mpc --quiet next";
-      #   "smooth-scrolling-threshold" = 5;
-      #   "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-      # };
-      # "network" = {
-      #   "interval" = 1;
-      #   "format-wifi" = "󰖩 {essid}";
-      #   "format-ethernet" = "󰀂 {ifname} ({ipaddr})";
-      #   "format-linked" = "󰖪 {essid} (No IP)";
-      #   "format-disconnected" = "󰯡 Disconnected";
-      #   "tooltip" = false;
-      # };
-      # "temperature" = {
-      #   #"critical-threshold"= 80;
-      #   "tooltip" = false;
-      #   "format" = " {temperatureC}°C";
-      # };
-      # "custom/powermenu" = {
-      #   "format" = "";
-      #   "on-click" = "~/.config/rofi/powermenu.sh";
-      #   "tooltip" = false;
-      # };
-      # "tray" = {
-      #   "icon-size" = 15;
-      #   "spacing" = 5;
-      # };
+      "tray" = {
+        "icon-size" = 18;
+        "rotate" = 0;
+        "spacing" = 5;
+      };
+
+      "battery" = {
+        "states" = {
+          "good" = 95;
+          "warning" = 30;
+          "critical" = 20;
+        };
+        "format" = "{icon} {capacity}%";
+        "rotate" = 0;
+        "format-charging" = " {capacity}%";
+        "format-plugged" = " {capacity}%";
+        "format-alt" = "{time} {icon}";
+        "format-icons" = [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ];
+      };
+
+      "backlight" = {
+        "device" = "intel_backlight";
+        "rotate" = 0;
+        "format" = "{icon} {percent}%";
+        "format-icons" = [ "", "", "", "", "", "", "", "", "" ];
+        "on-scroll-up" = "brightnessctl set 1%+";
+        "on-scroll-down" = "brightnessctl set 1%-";
+        "min-length" = 6;
+      };
+
+      "network" = {
+        "tooltip" = true;
+        "format-wifi" = " ";
+        "rotate" = 0;
+        "format-ethernet" = "󰈀 ";
+        "tooltip-format" = "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm
+        ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP:
+        <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+        "format-linked" = "󰈀 {ifname} (No IP)";
+        "format-disconnected": "󰖪 ";
+        "tooltip-format-disconnected" = "Disconnected";
+        "format-alt" = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'>
+      {bandwidthUpBytes}</span>";
+        "interval" = 2;
+      };
+
+      "pulseaudio" = {
+        "format" = "{icon} {volume}";
+        "rotate" = 0;
+        "format-muted" = "婢";
+        "on-click" = "pavucontrol -t 3";
+        "on-click-middle" = "volumecontrol.sh -o m";
+        "on-scroll-up" = "volumecontrol.sh -o i";
+        "on-scroll-down" = "volumecontrol.sh -o d";
+        "tooltip-format" = "{icon} {desc} // {volume}%";
+        "scroll-step" = 5;
+        "format-icons" = {
+          "headphone" = "";
+          "hands-free" = "";
+          "headset" = "";
+          "phone" = "";
+          "portable" = "";
+          "car" = "";
+          "default" = [ "", "", "" ];
+        };
+      };
+
     }];
   };
 }

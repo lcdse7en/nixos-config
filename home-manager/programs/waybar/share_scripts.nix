@@ -389,4 +389,256 @@ in
 
         "${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
         '';
-}
+
+  swwwallpaper = pkgs.writeShellScriptBin "swwwallpaper" ''
+        #// lock instance
+
+        lockFile="/tmp/hyde$(id -u)$(basename ${0}).lock"
+        [ -e "${lockFile}" ] && echo "An instance of the script is already running..." && exit 1
+        touch "${lockFile}"
+        trap 'rm -f ${lockFile}' EXIT
+
+        #// define functions
+
+        Wall_Cache()
+        {
+        ln -fs "${wallList[setIndex]}" "${wallSet}"
+        ln -fs "${wallList[setIndex]}" "${wallCur}"
+        "${scrDir}/swwwallcache.sh" -w "${wallList[setIndex]}" &> /dev/null
+        "${scrDir}/swwwallbash.sh" "${wallList[setIndex]}" &
+        ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
+        ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
+        ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
+        ln -fs "${thmbDir}/${wallHash[setIndex]}.quad" "${wallQad}"
+        ln -fs "${dcolDir}/${wallHash[setIndex]}.dcol" "${wallDcl}"
+        }
+
+        Wall_Change()
+        {
+        curWall="$(set_hash "${wallSet}")"
+        for i in "${!wallHash[@]}";
+        do
+          if [ "${curWall}" == "${wallHash[i]}" ] ; then
+          if [ "${1}" == "n" ] ; then
+          setIndex = $(
+          ((i + 1) % ${#wallList[@]} ))
+            elif [ "${1}" == "p" ] ; then
+        setIndex=$(( i - 1 ))
+        fi
+        break
+        fi
+        done
+        Wall_Cache
+        }
+
+        #// set variables
+
+        scrDir="$(dirname "$(realpath "$0")")"
+        source "${scrDir}/globalcontrol.sh"
+        wallSet="${hydeThemeDir}/wall.set"
+        wallCur="${cacheDir}/wall.set"
+        wallSqr="${cacheDir}/wall.sqre"
+        wallTmb="${cacheDir}/wall.thmb"
+        wallBlr="${cacheDir}/wall.blur"
+        wallQad="${cacheDir}/wall.quad"
+        wallDcl="${cacheDir}/wall.dcol"
+
+        #// check wall
+
+        setIndex=0
+        [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
+        wallPathArray=("${hydeThemeDir}")
+        wallPathArray+=("${wallAddCustomPath[@]}")
+        get_hashmap "${wallPathArray[@]}"
+        [ ! -e "$(readlink -f "${wallSet}")" ] && echo "fixig link :: ${wallSet}" && ln -fs "${wallList[setIndex]}" "${wallSet}"
+
+        #// evaluate options
+
+        while getopts "nps:" option;
+        do
+          case $option in
+          n ) # set next wallpaper
+          xtrans = "grow"
+          Wall_Change
+          n
+        ;
+        ;
+        p ) # set previous wallpaper
+        xtrans = "outer"
+          Wall_Change
+          p
+        ;
+        ;
+        s ) # set input wallpaper
+        if [ ! -z "${OPTARG}" ] && [ -f "${OPTARG}" ] ; then
+        get_hashmap "${OPTARG}"
+        fi
+        Wall_Cache
+        ;;
+        * ) # invalid option
+        echo "... invalid option ..."
+        echo "$(basename "${0}") -[option]"
+        echo "n : set next wall"
+        echo "p : set previous wall"
+        echo "s : set input wallpaper"
+        exit 1 ;;
+        esac
+        done
+
+        #// check swww daemon
+
+        swww query &> /dev/null
+        if [ $? -ne 0 ] ; then
+        swww-daemon --format xrgb &
+        swww query && swww restore
+        fi
+
+        #// set defaults
+
+        [ -z "${xtrans}" ] && xtrans = "grow"
+          [ -z "${wallFramerate}" ] && wallFramerate=60
+        [ -z "${wallTransDuration}" ] && wallTransDuration=0.4
+
+        #// apply wallpaper
+
+        echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
+        swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration "${wallTransDuration}" --transition-fps "${wallFramerate}" --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" &
+        '';
+
+  themeselect = pkgs.writeShellScriptBin "themeselect" ''
+        #// set variables
+
+        scrDir="$(dirname "$(realpath "$0")")"
+        source "${scrDir}/globalcontrol.sh"
+        rofiConf="${confDir}/rofi/selector.rasi"
+
+        #// set rofi scaling
+
+        [[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
+        r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
+        elem_border=$(( hypr_border * 5 ))
+        icon_border=$(( elem_border - 5 ))
+
+        #// scale for monitor
+
+        mon_x_res=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+        mon_scale=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale' | sed "s/\.//")
+        mon_x_res=$(( mon_x_res * 100 / mon_scale ))
+
+        #// generate config
+
+        case "${themeSelect}" in
+        2) # adapt to style 2
+        elm_width=$(( (20 + 12) * rofiScale * 2 ))
+        max_avail=$(( mon_x_res - (4 * rofiScale) ))
+        col_count=$(( max_avail / elm_width ))
+        r_override="window{width:100%;background-color:#00000003;} listview{columns:${col_count};} element{border-radius:${elem_border}px;background-color:@main-bg;} element-icon{size:20em;border-radius:${icon_border}px 0px 0px ${icon_border}px;}"
+        thmbExtn="quad";
+        ;
+        *) # default to style 1
+        elm_width = $
+          (((23 + 12 + 1) * rofiScale * 2))
+            max_avail=$(( mon_x_res - (4 * rofiScale) ))
+        col_count=$(( max_avail / elm_width ))
+        r_override="window{width:100%;} listview{columns:${col_count};} element{border-radius:${elem_border}px;padding:0.5em;} element-icon{size:23em;border-radius:${icon_border}px;}"
+        thmbExtn="sqre";
+        ;
+        esac
+
+          #// launch rofi menu
+
+          get_themes
+
+          rofiSel = $(for i in ${!thmList[@]};
+        do
+          echo -en "${thmList[i]}\x00icon\x1f${thmbDir}/$(set_hash "${thmWall[i]}").${thmbExtn}\n"
+          done | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
+
+          #// apply theme
+
+          if [ ! -z "${rofiSel}" ] ; then
+          "${scrDir}/themeswitch.sh" -s "${rofiSel}"
+          notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${rofiSel}"
+          fi
+          '';
+  quickapps = pkgs.writeShellScriptBin "quickapps" ''
+          # set variables
+
+          scrDir = $
+          (dirname "$(realpath "$0 ")")
+            source $scrDir/globalcontrol.sh
+            roconf="~/.config/rofi/quickapps.rasi"
+
+        if [ $# -eq 0 ]; then
+        echo "usage: ./quickapps.sh <app1> <app2> ... <app[n]>"
+        exit 1
+        else
+        appCount="$#"
+        fi
+
+        # set position
+
+        x_mon=$(cat /sys/class/drm/*/modes | head -1)
+        y_mon=$(echo $x_mon | cut -d 'x' -f 2)
+        x_mon=$(echo $x_mon | cut -d 'x' -f 1)
+
+        x_cur=$(hyprctl cursorpos | sed 's/ //g')
+        y_cur=$(echo $x_cur | cut -d ',' -f 2)
+        x_cur=$(echo $x_cur | cut -d ',' -f 1)
+
+        if [ ${x_cur} -le $((x_mon / 3)) ];
+        then
+        x_rofi = "west"
+          x_offset="x-offset: 20px;"
+        elif [ ${x_cur} -ge $((x_mon / 3 * 2)) ];
+        then
+        x_rofi = "east"
+          x_offset="x-offset: -20px;"
+        else
+        unset x_rofi
+        fi
+
+        if [ ${y_cur} -le $((y_mon / 3)) ];
+        then
+        y_rofi = "north"
+          y_offset="y-offset: 20px;"
+        elif [ ${y_cur} -ge $((y_mon / 3 * 2)) ];
+        then
+        y_rofi = "south"
+          y_offset="y-offset: -20px;"
+        else
+        unset y_rofi
+        fi
+
+        if [ ! -z $x_rofi ] || [ ! -z $y_rofi ];
+        then
+        pos = "window {location: $y_rofi $x_rofi; $x_offset $y_offset}"
+          fi
+
+          # override rofi
+
+          dockHeight=$((x_mon * 3 / 100))
+        dockWidth=$((dockHeight * appCount))
+        iconSize=$((dockHeight - 4))
+        wind_border=$((hypr_border * 3 / 2))
+        r_override="window{height:${dockHeight};width:${dockWidth};border-radius:${wind_border}px;} listview{columns:${appCount};} element{border-radius:${wind_border}px;} element-icon{size:${iconSize}px;}"
+
+        # launch rofi menu
+
+        if [ -d /run/current-system/sw/share/applications ];
+        then
+        appDir = /run/current-system/sw/share/applications
+          else
+          appDir=/usr/share/applications
+          fi
+
+          RofiSel=$(for qapp in "$@";
+        do
+          Lkp = $(grep "$qapp" $appDir/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1)
+    Ico=$(grep 'Icon=' $Lkp | awk -F '=' '{print $2}' | head -1)
+    echo -en "${qapp}\x00icon\x1f${Ico}\n"
+done | rofi -no-fixed-num-lines -dmenu -theme-str "${r_override}" -theme-str "${pos}" -config $roconf)
+
+$RofiSel &
+          '';
+          }
