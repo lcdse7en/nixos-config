@@ -71,11 +71,17 @@
     let
       user = "se7en";
       system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      lib = nixpkgs.lib;
       # selfPkgs = import ./pkgs;
     in
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
           specialArgs = {
             pkgs-stable = import nixpkgs-stable {
               inherit system;

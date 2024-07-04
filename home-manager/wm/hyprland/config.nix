@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, inputs, lib, ... }:
 {
   imports = [ ../../programs/waybar/hyprland_waybar.nix ];
   wayland.windowManager.hyprland = {
@@ -7,6 +7,13 @@
       #-----------------------#
       # wall(by swww service) #
       #-----------------------#
+      exec-once = swww init
+      exec = sleep 0.5 && default_wallpaper
+
+      exec-once = dunst
+      exec-once = nm-applet --indicator
+      exec = pkill waybar & sleep 0.5 && waybar
+
       exec-once = ~/hypr/scripts/swwwallpaper.sh # start wallpaper daemon
 
       $mainMod = SUPER
