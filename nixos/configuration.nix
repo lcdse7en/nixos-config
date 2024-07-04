@@ -148,7 +148,9 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       nix-path = lib.mkForce "nixpkgs=flake:nixpkgs";
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "configurable-impure-env" "cgroups" ];
+      auto-allocate-uids = true;
+      use-cgroups = true;
       auto-optimise-store = true; # Optimise syslinks
       accept-flake-config = true;
       # flake-registry = "${inputs.flake-registry}/flake-registry.json";
@@ -173,6 +175,7 @@
       options = "--delete-older-than 7d";
     };
     package = pkgs.nixVersions.git;
+    registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       keep-outputs            = true
       keep-derivations        = true
