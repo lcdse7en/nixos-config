@@ -236,11 +236,9 @@
       bind=$mainMod,B,exec,nvidia-offload firefox
       bind=$mainMod,M,exec,kitty --class="musicfox" --hold sh -c "musicfox"
       bind=$mainMod SHIFT,D,exec,kitty  --class="danmufloat" --hold sh -c "export TERM=xterm-256color && bili"
-      bind=$mainMod SHIFT,X,exec,${myswaylock}/bin/myswaylock
       bind=$mainMod,T,exec,telegram-desktop
       bind=$mainMod,bracketleft,exec,grimblast --notify --cursor  copysave area ~/Pictures/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png
       bind=$mainMod,bracketright,exec, grimblast --notify --cursor  copy area
-      bind=$mainMod,A,exec, ${grimblast_watermark}/bin/grimblast_watermark
       bind=,Print,exec, flameshot_watermark
       bind=,Super_L,exec, pkill rofi || ~/.config/rofi/launcher.sh
       bind=$mainMod,Super_L,exec, bash ~/.config/rofi/powermenu.sh
@@ -300,12 +298,7 @@
       #------------#
       # auto start #
       #------------#
-      exec-once = ${launch_waybar}/bin/launch_waybar &
       exec-once = mako &
-      exec-once = nm-applet &
-      #exec-once = swayidle -w timeout 900 'systemctl suspend' before-sleep '${myswaylock}/bin/myswaylock'
-
-      #---------------#
       # windows rules #
       #---------------#
       #`hyprctl clients` get class、title...
@@ -347,53 +340,10 @@
       #---------#
       # plugins #
       #---------#
-      bind=ALT_CTRL,space,exec,${hycovEasymotion}/bin/hycovEasymotion
       submap=__easymotionsubmap__
-      bind=Alt,right,hycov:movefocus,rightcross
-      bind=Alt,left,hycov:movefocus,leftcross
-      bind=Alt,up,hycov:movefocus,upcross
-      bind=Alt,down,hycov:movefocus,downcross
       bind=ALT_SHIFT,p,killactive
-      bind=ALT_CTRL,space,exec,${hycovEasymotion}/bin/hycovEasymotion
       submap=reset
       plugin {
-          hycov {
-            overview_gappo = 24 # gas width from screen
-            overview_gappi = 18 # gas width from clients
-            hotarea_size = 10   # hotarea size in bottom left,10x10
-            enable_hotarea = 1  # move cursor to bottom-left can toggle overview
-          }
-          easymotion {
-            #font size of the text
-            textsize=30
-
-            #color of the text, takes standard hyprland color format
-            textcolor=rgba(ffffffff)
-
-            #background color of the label box. alpha is respected
-            bgcolor=rgba(46,52,64,1)
-
-            #font to use for the label. This is passed directly to the pango font description
-            textfont=JetBrainsMono Nerd Font
-
-            #padding around the text (inside the label box) size in pixels, adjusted for
-            #monitor scaling. This is the same format as hyprland's gapsin/gapsout workspace layout rule
-            #example: textpadding=2 5 5 2 (spaces not commas)
-            textpadding=10 20 20 10
-
-            #size of the border around the label box. A border size of zero disables border rendering.
-            bordersize=3
-
-            #color of the border. takes the same format as hyprland's border (so it can be a gradient)
-            bordercolor=rgba(ffffffff)
-
-            #rounded corners? Same as hyprland's 'decoration:rounding' config
-            rounding=3
-
-            #which keys to use for labeling windows
-            motionkeys=abcdefghijklmnopqrstuvwxyz1234567890
-          }
-      }
     '');
   };
 }

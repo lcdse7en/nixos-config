@@ -36,4 +36,8 @@
       XDG_SESSION_TYPE = "wayland";
     };
   };
+
+  # home.file = {
+  #   ".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  # };
 }

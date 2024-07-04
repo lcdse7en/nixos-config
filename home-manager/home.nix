@@ -40,7 +40,7 @@ in
 
     # ./dev
 
-    # ./wm/hyprland
+    ./wm/hyprland
 
     (import ./editors/neovim { inherit config configDir; })
     # (import ./wm/hyprland { inherit config configDir; })
