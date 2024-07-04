@@ -6,7 +6,6 @@
       keybindings = { };
       font.name = "jetbrains mono nerd font";
       font.size = 10;
-      window_padding_width 25;
       settings = {
         italic_font = "auto";
         bold_italic_font = "auto";
@@ -16,7 +15,8 @@
         url_style = "dotted";
         #Close the terminal =  without confirmation;
         confirm_os_window_close = 0;
-        background_opacity = "0.95";
+        window_padding_width = 10;
+        background_opacity = "0.60";
       };
       extraConfig = ''
 

@@ -16,20 +16,26 @@
 
       input {
         kb_layout = us
+        follow_mouse = 1 # 0|1|2|3
         kb_variant =
         kb_model =
         kb_options = caps:escape
         kb_rules =
 
-        follow_mouse = 2 # 0|1|2|3
         float_switch_override_focus = 2
         numlock_by_default = true
 
         touchpad {
-        natural_scroll = yes
+          natural_scroll = no
         }
 
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+        force_no_accel = 1
+      }
+
+      device {
+          name = epic mouse V1
+          sensitivity = -0.5
       }
 
       general {
@@ -43,19 +49,18 @@
       }
 
       dwindle {
+        pseudotile = yes
+        preserve_split = yes
         no_gaps_when_only = false
         force_split = 0
         special_scale_factor = 0.8
         split_width_multiplier = 1.0
         use_active_for_splits = true
-        pseudotile = yes
-        preserve_split = yes
       }
 
       master {
-        # new_is_master = true
+        new_status = master
         special_scale_factor = 0.8
-        # new_is_master = true
         no_gaps_when_only = false
       }
 
@@ -98,7 +103,7 @@
 
       gestures {
         workspace_swipe = true
-        workspace_swipe_fingers = 4
+        workspace_swipe_fingers = 3
         workspace_swipe_distance = 250
         workspace_swipe_invert = true
         workspace_swipe_min_speed_to_force = 15
@@ -107,14 +112,21 @@
       }
 
       misc {
-        disable_autoreload = true
+        vrr = 0
         disable_hyprland_logo = true
+        disable_splash_rendering = true
+        force_default_wallpaper = 0
+        disable_autoreload = true
         always_follow_on_dnd = true
         layers_hog_keyboard_focus = true
         animate_manual_resizes = false
         enable_swallow = true
         swallow_regex =
         focus_on_activate = true
+      }
+
+      xwayland {
+          force_zero_scaling = true
       }
 
       #-------------------------------#
@@ -295,6 +307,9 @@
 
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
+
+      # █▀ █▀█ █░█ █▀█ █▀▀ █▀▀
+      # ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄
 
       #-----------------------#
       # wall(by swww service) #
