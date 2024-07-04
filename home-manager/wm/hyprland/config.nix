@@ -128,13 +128,11 @@
       }
 
       # Window/Session actions
-      bind = $mainMod, Q, exec, ./scripts/dontkillsteam.sh # killactive, kill the window on focus
+      bind = $mainMod, Q, killactive,
       bind = $mainMod SHIFT, Q, exit, # kill hyperland session
 
       bind = $mainMod, Return, exec, kitty
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
-      bind = $mainMod SHIFT, P, killactive,
-      bind = $mainMod SHIFT, Q, exit,
       bind = $mainMod SHIFT, Space, togglefloating,
       bind = $mainMod,F,fullscreen
       bind = $mainMod,Y,pin
