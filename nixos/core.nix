@@ -41,6 +41,7 @@
       sops
 
       # hyprland
+      swww
       hyprpaper
     ];
   };

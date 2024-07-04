@@ -2,6 +2,12 @@
 {
   wayland.windowManager.hyprland = {
     extraConfig = ''
+
+      #-----------------------#
+      # wall(by swww service) #
+      #-----------------------#
+      exec-once = ~/hypr/scripts/swwwallpaper.sh # start wallpaper daemon
+
       $mainMod = SUPER
       $browser = brave
 
@@ -322,12 +328,6 @@
       # █▀ █▀█ █░█ █▀█ █▀▀ █▀▀
       # ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄
 
-      #-----------------------#
-      # wall(by swww service) #
-      #-----------------------#
-      # exec-once = default_wall
-      exec-once = hyprpaper
-
       #------------#
       # auto start #
       #------------#
@@ -377,6 +377,14 @@
       #-----------------#
       # workspace rules #
       #-----------------#
+
+# ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄
+# █▀ █▀█ █░█ █▀█ █▀▀ █▀▀
+
+      source = ~/.config/hypr/themes/common.conf # shared theme settings
+      source = ~/.config/hypr/themes/theme.conf # theme specific settings
+      source = ~/.config/hypr/themes/colors.conf # wallbash color override
+
       workspace=HDMI-A-1,10
     '' + (if config.wayland.windowManager.hyprland.plugins == [ ] then "" else ''
       #---------#
