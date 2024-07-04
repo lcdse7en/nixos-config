@@ -3,7 +3,7 @@
 
   nixConfig = {
     # enable nixcomman and flakes for nixos-rebuild switch --flake
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" ];
     # replace official cache with mirrors located in China
     substituters = [
       "https://mirrors.cernet.edu.cn/nix-channels/store"
@@ -71,7 +71,7 @@
     let
       user = "se7en";
       system = "x86_64-linux";
-      selfPkgs = import ./pkgs;
+      # selfPkgs = import ./pkgs;
     in
     {
       nixosConfigurations = {
