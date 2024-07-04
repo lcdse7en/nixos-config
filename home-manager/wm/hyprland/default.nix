@@ -5,8 +5,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-      inputs.hycov.packages.${pkgs.system}.hycov
-      inputs.hypreasymotion.packages.${pkgs.system}.hypreasymotion
+      # inputs.hycov.packages.${pkgs.system}.hycov
+      # inputs.hypreasymotion.packages.${pkgs.system}.hypreasymotion
     ];
     systemd.enable = true;
   };
