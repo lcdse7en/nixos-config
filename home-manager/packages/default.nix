@@ -19,6 +19,7 @@ let
     ncmpcpp
     smug
     nsxiv
+    cava
     lua
   ];
 in

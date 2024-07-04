@@ -3,12 +3,18 @@
   networking = {
     networkmanager.enable = false;
     firewall.allowedTCPPorts = [ 5173 1420 ];
-    hosts = {
-      "185.199.109.133" = [ "raw.githubusercontent.com" ];
-      "185.199.111.133" = [ "raw.githubusercontent.com" ];
-      "185.199.110.133" = [ "raw.githubusercontent.com" ];
-      "185.199.108.133" = [ "raw.githubusercontent.com" ];
-    };
+    # hosts = {
+    #   "185.199.109.133" = [ "raw.githubusercontent.com" ];
+    #   "185.199.111.133" = [ "raw.githubusercontent.com" ];
+    #   "185.199.110.133" = [ "raw.githubusercontent.com" ];
+    #   "185.199.108.133" = [ "raw.githubusercontent.com" ];
+    # };
+    extraHosts = ''
+      185.199.109.133 raw.githubusercontent.com
+      185.199.111.133 raw.githubusercontent.com
+      185.199.110.133 raw.githubusercontent.com
+      185.199.108.133 raw.githubusercontent.com
+    '';
   };
 
   environment = {
