@@ -341,8 +341,9 @@
 
       windowrulev2 = opacity 0.90 0.90,class:^(firefox)$
       windowrulev2 = opacity 0.90 0.90,class:^(Brave-browser)$
-      windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
+      # windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
 
+      # windowrule=opacity 0.8,kitty
       windowrule=float,title:^(Picture-in-Picture)$
       windowrule=size 960 540,title:^(Picture-in-Picture)$
       windowrule=move 25%-,title:^(Picture-in-Picture)$
