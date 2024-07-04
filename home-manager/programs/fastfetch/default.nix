@@ -4,11 +4,11 @@
     enable = true;
   };
 
-  xdg.configFile."fastfetch/dragonball.jsonc".text = ''
+  xdg.configFile."fastfetch/config.jsonc".text = ''
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
       "logo": {
-        "source": "~/goku.png",
+        # "source": "goku.png",
         "type": "iterm",
         "height": 20,
         "width": 40,
@@ -163,6 +163,26 @@
     }
   '';
 
-  # xdg.configFile."fastfetch/planet".text = ''
-  # '';
+  xdg.configFile."fastfetch/planet".text = ''
+                                              ,o88888
+                                           ,o8888888'
+                     ,:o:o:oooo.        ,8O88Pd8888"
+                 ,.::.::o:ooooOoOoO. ,oO8O8Pd888'"
+               ,.:.::o:ooOoOoOO8O8OOo.8OOPd8O8O"
+              , ..:.::o:ooOoOOOO8OOOOo.FdO8O8"
+             , ..:.::o:ooOoOO8O888O8O,COCOO"
+            , . ..:.::o:ooOoOOOO8OOOOCOCO"
+             . ..:.::o:ooOoOoOO8O8OCCCC"o
+                . ..:.::o:ooooOoCoCCC"o:o
+                . ..:.::o:o:,cooooCo"oo:o:
+             `   . . ..:.:cocoooo"'o:o:::'
+             .`   . ..::ccccoc"'o:o:o:::'
+            :.:.    ,c:cccc"':.:.:.:.:.'
+          ..:.:"'`::::c:"'..:.:.:.:.:.'
+        ...:.'.:.::::"'    . . . . .'
+       .. . ....:."' `   .  . . \'\'
+     . . . ...."'
+     .. . ."'
+    .
+  '';
 }
