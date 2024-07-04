@@ -127,6 +127,10 @@
         focus_on_activate = true
       }
 
+      # Window/Session actions
+      bind = $mainMod, Q, exec, ./scripts/dontkillsteam.sh # killactive, kill the window on focus
+      bind = $mainMod SHIFT, Q, exit, # kill hyperland session
+
       bind = $mainMod, Return, exec, kitty
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
       bind = $mainMod SHIFT, P, killactive,
