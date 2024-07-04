@@ -386,7 +386,7 @@
       source = ~/.config/hypr/themes/theme.conf # theme specific settings
       source = ~/.config/hypr/themes/colors.conf # wallbash color override
 
-      workspace=HDMI-A-1,10
+      # workspace=HDMI-A-1,10
     '' + (if config.wayland.windowManager.hyprland.plugins == [ ] then "" else ''
       #---------#
       # plugins #
