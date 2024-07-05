@@ -94,6 +94,7 @@
           };
           modules = [
             ./nixos/configuration.nix
+            ./nixos/allowed-unfree.nix
             hyprland.nixosModules.default
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
