@@ -36,6 +36,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix.url = "github:danth/stylix";
+
     ###########################################################
     #  Hyprland                                               #
     ###########################################################
@@ -109,6 +111,7 @@
           };
           modules = [
             ./nixos/configuration.nix
+            inputs.stylix.nixosModules.stylix
             # hyprland.nixosModules.default
             {
               programs.hyprland.enable = true;

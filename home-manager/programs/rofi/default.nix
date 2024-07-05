@@ -156,7 +156,7 @@
             background-color = mkLiteral "@selected";
             text-color = mkLiteral "@text-selected";
           };
-          "element selected.urgent" = {
+          o  "element selected.urgent" = {
             background-color = mkLiteral "@urgent";
             text-color = mkLiteral "@text-selected";
           };
