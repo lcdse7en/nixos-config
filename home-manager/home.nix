@@ -49,7 +49,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "kitty";
+    # TERMINAL = "kitty";
     BROWSER = "brave";
   };
 
