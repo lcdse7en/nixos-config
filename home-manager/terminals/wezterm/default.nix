@@ -9,6 +9,7 @@ in {
     enable = true;
     extraConfig = ''
       local wezterm = require('wezterm')
+      local oct = wezterm.action
       local config = wezterm.config_builder()
       local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
@@ -136,6 +137,14 @@ in {
       config.window_background_opacity = 0.75
       config.text_background_opacity = 0.75
       config.adjust_window_size_when_changing_font_size = false
+
+      config.mouse_bingdings = {
+        {
+          event = { Down = { streak =1, button = "Right" } },
+          mods = "NONE",
+          action = act({ PasteFrom = "Clipboard" }),
+        }
+      }
 
       config.debug_key_events = true
       config.inactive_pane_hsb = {
