@@ -49,6 +49,9 @@
     hyprlock = {
       url = "github:hyprwm/hyprlock";
     };
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
