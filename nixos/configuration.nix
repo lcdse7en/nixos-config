@@ -60,17 +60,17 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.se7en = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      vim
-      git
-    ];
-  };
-
-  programs.fish.enable = true;
+  # users.users.se7en = {
+  #   isNormalUser = true;
+  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  #   shell = pkgs.fish;
+  #   packages = with pkgs; [
+  #     vim
+  #     git
+  #   ];
+  # };
+  #
+  # programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
