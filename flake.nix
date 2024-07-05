@@ -3,7 +3,6 @@
 
   outputs = inputs @ { self, ... }:
     let
-      user = "se7en";
       selfPkgs = import ./pkgs;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
