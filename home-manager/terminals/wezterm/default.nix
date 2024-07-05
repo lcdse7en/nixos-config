@@ -172,10 +172,10 @@ in {
       })
       config.font_size = 11
       config.window_padding = {
-        top = 0,
-        bottom = 0,
-        left = 0,
-        right = 0,
+        top = 20,
+        bottom = 5,
+        left = 20,
+        right = 20,
       }
 
       config.text_background_opacity = 0.9
