@@ -63,7 +63,7 @@ in
     recursive = true;
   };
   home.file.".config/hypr/themes" = {
-    source = ./wm/hyprland/hypr/themes;
+    source = ./wm/hyprland/themes/theme.conf;
     recursive = true;
   };
 
