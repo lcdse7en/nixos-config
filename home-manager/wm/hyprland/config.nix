@@ -176,7 +176,7 @@
       bind = $mainMod, F7, exec, $browser https://www.kpopn.com/category/news # kpopn
       bind = $mainMod, F8, exec, emacs  # open emacs
 
-      bind = $mainMod, Return, exec, wezterm-gui
+      bind = $mainMod, Return, exec, wezterm
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
       bind = $mainMod SHIFT, Space, togglefloating,
       bind = $mainMod,Y,pin
@@ -360,10 +360,8 @@
       windowrulev2 = opacity 0.90 0.90,class:^(firefox)$
       windowrulev2 = opacity 0.90 0.90,class:^(Brave-browser)$
       windowrulev2 = opacity 0.80 0.80,class:^(kitty)$
-      # windowrulev2 = opacity 0.80 0.80,class:^(wezterm)$
 
       windowrule=opacity 0.8,kitty
-      # windowrule=opacity 0.8,wezterm
       windowrule=float,title:^(Picture-in-Picture)$
       windowrule=size 960 540,title:^(Picture-in-Picture)$
       windowrule=move 25%-,title:^(Picture-in-Picture)$
