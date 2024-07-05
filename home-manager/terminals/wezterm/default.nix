@@ -58,6 +58,9 @@ in {
       local config = wezterm.config_builder()
       local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
+      config.font = wezterm.font("JetBrainsMonoNL Nerd Font", { weight = "Regular" })
+      config.font_size = 11
+
       config.hide_mouse_cursor_when_typing = true
       config.window_decorations = 'RESIZE'
 
