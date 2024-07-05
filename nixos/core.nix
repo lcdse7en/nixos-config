@@ -126,7 +126,6 @@
       sops
 
       # hyprland
-      swww
       dunst
       hyprpaper
     ];

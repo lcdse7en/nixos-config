@@ -15,6 +15,7 @@
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
   ] ++ (with pkgs;[
+    swww
     swaylock-effects
     swayidle
     pamixer
