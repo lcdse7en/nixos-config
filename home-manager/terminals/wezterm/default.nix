@@ -142,7 +142,7 @@ in {
         {
           event = { Down = { streak =1, button = "Right" } },
           mods = "NONE",
-          action = act({ PasteFrom = "Clipboard" }),
+          action = oct({ PasteFrom = "Clipboard" }),
         }
       }
 
