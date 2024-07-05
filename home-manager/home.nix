@@ -62,10 +62,6 @@ in
     source = ./wallpapers;
     recursive = true;
   };
-  home.file.".config/hypr/themes" = {
-    source = ./themes;
-    recursive = true;
-  };
 
   # Styling Options
   stylix.targets.waybar.enable = false;
