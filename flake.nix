@@ -69,6 +69,8 @@
 
     impermanence.url = "github:nix-community/impermanence";
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
