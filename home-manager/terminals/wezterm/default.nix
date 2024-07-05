@@ -156,6 +156,7 @@ in {
 
       config.window_background_opacity = 0.9
       config.text_background_opacity = 0.9
+      config.adjust_window_size_when_changing_font_size = false
 
       config.debug_key_events = true
       config.inactive_pane_hsb = {
