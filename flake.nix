@@ -1,43 +1,37 @@
 {
-  description = "My system configuration";
+  description = "Ruixi-rebirth's NixOS Configuration";
 
-  nixConfig = {
-    # enable nixcomman and flakes for nixos-rebuild switch --flake
-    experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "cgroups" ];
-    # replace official cache with mirrors located in China
-    substituters = [
-      "https://mirrors.cernet.edu.cn/nix-channels/store"
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"
-      "https://cache.nixos.org/"
-    ];
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://hyprland.cachix.org"
-      # "https://ruixi-rebirth.cachix.org"
-      "https://cache.nixos.org"
-      "https://nixpkgs-wayland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-    ];
-    trusted-users = [ "root" "se7en" "@wheel" ];
-  };
+  outputs = inputs @ { self, ... }:
+    let
+      user = "se7en";
+      selfPkgs = import ./pkgs;
+    in
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+      systems = [ "x86_64-linux" ];
+      imports = [
+        ./home/profiles
+        ./hosts
+        ./modules
+      ] ++ [
+        inputs.flake-root.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
+      flake = {
+        overlays.default = selfPkgs.overlay;
+      };
+    };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # update single input: `nix flake lock --update-input <name>`
+    # update all inputs: `nix flake update`
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-root.url = "github:srid/flake-root";
+    flake-registry = {
+      url = "github:NixOS/flake-registry";
+      flake = false;
+    };
 
     hyprland = {
       url = "github:hyprwm/Hyprland?ref=v0.40.0";
@@ -51,67 +45,62 @@
       url = "github:DreamMaoMao/hyprland-easymotion?rev=54a8fb0e5652b79fb4f8399506696f1c32b59aaa";
       inputs.hyprland.follows = "hyprland";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hypr-contrib.url = "github:hyprwm/contrib";
+    impermanence.url = "github:nix-community/impermanence";
+    lanzaboote = {
+      #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixd.url = "github:nix-community/nixd";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nvim-flake.url = "github:Ruixi-rebirth/nvim-flake";
+    nur.url = "github:nix-community/NUR";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    sops-nix.url = "github:Mic92/sops-nix";
+    # treefmt-nix.url = "github:numtide/treefmt-nix";
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixd.url = "github:nix-community/nixd";
-
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
-    impermanence.url = "github:nix-community/impermanence";
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
-
-    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
-    let
-      user = "se7en";
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      lib = nixpkgs.lib;
-      # selfPkgs = import ./pkgs;
-    in
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            pkgs-stable = import nixpkgs-stable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            inherit inputs system user;
-          };
-          modules = [
-            ./nixos/configuration.nix
-            ./nixos/allowed-unfree.nix
-            hyprland.nixosModules.default
-            { programs.hyprland.enable = true; }
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                users.se7en = ./home-manager/home.nix;
-                extraSpecialArgs = {
-                  inherit inputs user;
-                };
-              };
-            }
-          ];
-        };
-      };
-    };
+  nixConfig = {
+    substituters = [
+      "https://mirrors.cernet.edu.cn/nix-channels/store"
+      "https://mirrors.bfsu.edu.cn/nix-channels/store"
+      "https://cache.nixos.org/"
+    ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://ruixi-rebirth.cachix.org"
+      "https://cache.nixos.org"
+      "https://nixpkgs-wayland.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+    ];
+    trusted-users = [ "root" "@wheel" ];
+  };
 }

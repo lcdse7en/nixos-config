@@ -10,9 +10,10 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./core.nix
+      ./nix.nix
+      ./allowed-unfree.nix
       ./fonts.nix
       ./desktop.nix
-      ./nix.nix
       # ./impermanence.nix
     ];
 
