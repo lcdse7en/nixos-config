@@ -19,18 +19,18 @@
     '';
   };
 
-  sops = {
-    secrets.SSH_PVKEY = {
-      mode = "0600";
-      owner = "${user}";
-      path = "/home/" + "${user}" + "/.ssh/id_rsa";
-    };
-    secrets.GPG_PVKEY = {
-      mode = "0600";
-      owner = "${user}";
-      path = "/home/" + "${user}" + "/.gnupg/GPG_PVKEY";
-    };
-  };
+  # sops = {
+  #   secrets.SSH_PVKEY = {
+  #     mode = "0600";
+  #     owner = "${user}";
+  #     path = "/home/" + "${user}" + "/.ssh/id_rsa";
+  #   };
+  #   secrets.GPG_PVKEY = {
+  #     mode = "0600";
+  #     owner = "${user}";
+  #     path = "/home/" + "${user}" + "/.gnupg/GPG_PVKEY";
+  #   };
+  # };
 
   time.timeZone = "Asia/Shanghai";
 
