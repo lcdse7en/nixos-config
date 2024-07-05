@@ -1,25 +1,3 @@
-# { config
-# , lib
-# , pkgs
-# , ...
-# }:
-# with lib; let
-#   cfg = config.modules.terminals.wezterm;
-# in
-# {
-#   options.modules.terminals.wezterm = {
-#     enable = mkEnableOption "enable wezterm terminal emulator";
-#   };
-#
-#   config = mkIf cfg.enable {
-#     programs.wezterm = {
-#       enable = true;
-#       package = pkgs.wezterm-nightly;
-#       extraConfig = builtins.readFile ./config.lua;
-#     };
-#   };
-# }
-
 { pkgs, ... }:
 let fish_path_lua_str = "'${pkgs.fish}/bin/fish'";
 in {
@@ -233,7 +211,7 @@ in {
         -- Toggle zoom for neovim
         {
           key = 't',
-          mods = 'SUPER',
+          mods = 'LEADER',
           action = wezterm.action_callback(function(window, pane)
             local tab = pane:tab()
             local panes = tab:panes_with_info()
