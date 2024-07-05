@@ -177,6 +177,9 @@ in {
         left = 0,
         right = 0,
       }
+
+      config.text_background_opacity = 0.9
+
       config.debug_key_events = true
       config.inactive_pane_hsb = {
         saturation = 0.7,
