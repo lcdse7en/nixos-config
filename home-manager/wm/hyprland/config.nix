@@ -176,7 +176,7 @@
       bind = $mainMod, F7, exec, $browser https://www.kpopn.com/category/news # kpopn
       bind = $mainMod, F8, exec, emacs  # open emacs
 
-      bind = $mainMod, Return, exec, kitty
+      bind = $mainMod, Return, exec, wezterm
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
       bind = $mainMod SHIFT, Space, togglefloating,
       bind = $mainMod,Y,pin
