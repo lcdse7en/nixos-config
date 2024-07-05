@@ -1,5 +1,5 @@
 {
-  home.sessionVariables.TERMINAL = "wezterm";
+  home.sessionVariables.TERM = "wezterm";
 
   imports = [
     ./kitty
