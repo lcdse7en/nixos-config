@@ -44,7 +44,7 @@ in
 
     (import ./editors/neovim { inherit config configDir; })
 
-    ../pkgs
+    # ../pkgs
 
   ];
 

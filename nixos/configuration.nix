@@ -60,17 +60,25 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.se7en = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   shell = pkgs.fish;
-  #   packages = with pkgs; [
-  #     vim
-  #     git
-  #   ];
-  # };
-  #
-  # programs.fish.enable = true;
+  users = {
+    users = {
+      se7en = {
+        shell = pkgs.fish;
+        isNormalUser = true;
+        home = "/home/se7en";
+        extraGroups = [ "wheel" "networkmanager" ];
+        packages = with pkgs; [
+          vim
+          git
+        ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsT6GLG7sY8YKX7JM+jqS3EAti3YMzwHKWViveqkZvu"
+        ];
+      };
+    };
+  };
+
+  programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -98,15 +106,15 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = true;
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no";
-      AllowUsers = [ "se7en" ];
-    };
-  };
+  # services.openssh = {
+  #   enable = true;
+  #   settings = {
+  #     PasswordAuthentication = true;
+  #     KbdInteractiveAuthentication = false;
+  #     PermitRootLogin = "no";
+  #     AllowUsers = [ "se7en" ];
+  #   };
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
