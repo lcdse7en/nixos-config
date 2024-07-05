@@ -109,7 +109,7 @@
             # hyprland.nixosModules.default
             # inputs.impermanence.nixosModules.impermanence
             # inputs.sops-nix.nixosModules.sops
-            { programs.hyprland.enable = true; }
+            # { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
