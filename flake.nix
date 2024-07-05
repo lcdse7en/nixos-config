@@ -97,8 +97,8 @@
           modules = [
             ./nixos/configuration.nix
             hyprland.nixosModules.default
-            inputs.impermanence.nixosModules.impermanence
-            inputs.sops-nix.nixosModules.sops
+            # inputs.impermanence.nixosModules.impermanence
+            # inputs.sops-nix.nixosModules.sops
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
