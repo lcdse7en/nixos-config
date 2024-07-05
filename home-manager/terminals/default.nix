@@ -3,6 +3,6 @@
 
   imports = [
     ./kitty
-    # ./wezterm
+    ./wezterm
   ];
 }
