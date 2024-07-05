@@ -6,7 +6,6 @@
 }: {
   flake.nixosConfigurations =
     let
-      user = "se7en";
       inherit (inputs.nixpkgs.lib) nixosSystem;
     in
     {
@@ -21,7 +20,7 @@
               ../modules/nix.nix
               ../modules/desktop.nix
               ../modules/fonts.nix
-              ../modules/impermanence.nix
+              # ../modules/impermanence.nix
               {
                 home-manager =
                   {
