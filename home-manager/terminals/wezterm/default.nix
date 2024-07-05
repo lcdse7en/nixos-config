@@ -138,7 +138,7 @@ in {
       config.text_background_opacity = 0.75
       config.adjust_window_size_when_changing_font_size = false
 
-      config.mouse_bingdings = {
+      config.mouse_bindings = {
         {
           event = { Down = { streak =1, button = "Right" } },
           mods = "NONE",
