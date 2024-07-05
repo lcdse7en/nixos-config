@@ -1,6 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, config, user, ... }:
 {
   networking = {
+    hostName = "se7en";
     # networkmanager.enable = true;
     firewall.enable = false;
     firewall.allowedTCPPorts = [ 5173 1420 ];
@@ -16,6 +17,19 @@
       185.199.110.133 raw.githubusercontent.com
       185.199.108.133 raw.githubusercontent.com
     '';
+  };
+
+  sops = {
+    secrets.SSH_PVKEY = {
+      mode = "0600";
+      owner = "${user}";
+      path = "/home/" + "${user}" + "/.ssh/id_rsa";
+    };
+    secrets.GPG_PVKEY = {
+      mode = "0600";
+      owner = "${user}";
+      path = "/home/" + "${user}" + "/.gnupg/GPG_PVKEY";
+    };
   };
 
   time.timeZone = "Asia/Shanghai";

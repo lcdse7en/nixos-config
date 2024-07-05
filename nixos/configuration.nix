@@ -13,6 +13,7 @@
       ./fonts.nix
       ./desktop.nix
       ./nix.nix
+      # ./impermanence.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
