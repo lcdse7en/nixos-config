@@ -127,7 +127,8 @@ in {
         }
       end)
 
-      config.color_scheme = 'tokyonight_night'
+      -- config.color_scheme = 'tokyonight_night'
+      config.color_scheme = 'Catppuccin Mocha'
       config.colors = {
         tab_bar = {
           background = '#292e42'
@@ -149,13 +150,13 @@ in {
       config.font_size = 11
       config.window_padding = {
         top = 20,
-        bottom = 5,
+        bottom = 0,
         left = 20,
         right = 20,
       }
 
-      config.window_background_opacity = 0.9
-      config.text_background_opacity = 0.9
+      config.window_background_opacity = 0.75
+      config.text_background_opacity = 0.75
       config.adjust_window_size_when_changing_font_size = false
 
       config.debug_key_events = true
