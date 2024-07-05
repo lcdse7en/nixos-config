@@ -118,7 +118,7 @@
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
-                users.se7en = ./home-manager/home.nix;
+                users.se7en = import ./home-manager/home.nix;
                 extraSpecialArgs = {
                   inherit inputs user;
                 };

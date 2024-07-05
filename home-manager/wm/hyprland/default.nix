@@ -16,6 +16,7 @@
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
   ] ++ (with pkgs;[
     swww
+    swappy
     swaylock-effects
     swayidle
     pamixer

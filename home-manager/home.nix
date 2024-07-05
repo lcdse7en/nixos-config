@@ -60,5 +60,7 @@ in
   # Scripts
   home.packages = [
     (import ../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../scripts/web-search.nix { inherit pkgs; })
+
   ];
 }

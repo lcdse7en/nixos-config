@@ -167,7 +167,8 @@
       # ======================================================================
       # Open Browser
       # ======================================================================
-      bind = $mainMod, W, exec, $browser # open browser
+      # bind = $mainMod, W, exec, $browser # open browser
+      bind = $mainMod, W, exec, web-search # web-search
       bind = $mainMod SHIFT, W, exec, $browser https://github.com/lcdse7en # se7en github
       bind = $mainMod, B, exec, $browser  https://www.bilibili.com/ # bilibili
       bind = $mainMod SHIFT, B, exec, $browser https://member.bilibili.com/platform/upload-manager/article # bilibili
