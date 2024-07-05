@@ -40,9 +40,9 @@
     flake-root.url = "github:srid/flake-root";
 
     hyprland = {
-      # url = "github:hyprwm/Hyprland?ref=v0.41.2";
+      url = "github:hyprwm/Hyprland?ref=v0.41.2";
       # url = "github:hyprwm/Hyprland?ref=v0.40.0";
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
