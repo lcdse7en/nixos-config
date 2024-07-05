@@ -1,4 +1,4 @@
-{ pkgs, config, user, ... }:
+{ pkgs, config, user, inputs, ... }:
 {
   networking = {
     hostName = "se7en";

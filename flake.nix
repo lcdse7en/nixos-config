@@ -25,7 +25,6 @@
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];
     trusted-users = [ "root" "se7en" "@wheel" ];
-    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   inputs = {
@@ -70,7 +69,7 @@
     impermanence.url = "github:nix-community/impermanence";
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
 
-    # sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
