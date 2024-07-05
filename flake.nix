@@ -36,9 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-root.url = "github:srid/flake-root";
-
     ###########################################################
     #  Hyprland                                               #
     ###########################################################
