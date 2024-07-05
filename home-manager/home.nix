@@ -57,6 +57,7 @@ in
     direnv.nix-direnv.enable = true;
   };
 
+  # Scripts
   home.packages = [
     (import ../scripts/screenshootin.nix { inherit pkgs; })
   ];
