@@ -15,7 +15,7 @@
         ./modules
       ] ++ [
         inputs.flake-root.flakeModule
-        inputs.treefmt-nix.flakeModule
+        # inputs.treefmt-nix.flakeModule
       ];
       flake = {
         overlays.default = selfPkgs.overlay;
