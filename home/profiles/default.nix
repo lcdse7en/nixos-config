@@ -12,7 +12,7 @@ let
   ];
 
   homeImports = {
-    "${user}@se7en" = [ ./se7en ] ++ sharedModules;
+    "${user}@k-no" = [ ./se7en ] ++ sharedModules;
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
@@ -25,8 +25,8 @@ in
 
   flake = {
     homeConfigurations = withSystem "x86_64-linux" ({ pkgs, ... }: {
-      "${user}@se7en" = homeManagerConfiguration {
-        modules = homeImports."${user}@se7en";
+      "${user}@k-no" = homeManagerConfiguration {
+        modules = homeImports."${user}@k-no";
         inherit pkgs;
       };
     });
