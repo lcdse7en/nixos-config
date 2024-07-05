@@ -44,6 +44,8 @@ in
 
     (import ./editors/neovim { inherit config configDir; })
 
+    ../pkgs
+
   ];
 
   home.sessionVariables = {
