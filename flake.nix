@@ -45,10 +45,10 @@
     # url = "github:hyprwm/Hyprland?ref=v0.40.0";
     # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland?ref=v0.41.2";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.40.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -82,8 +82,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  # outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";
@@ -107,10 +106,10 @@
           };
           modules = [
             ./nixos/configuration.nix
-            # hyprland.nixosModules.default
+            hyprland.nixosModules.default
             # inputs.impermanence.nixosModules.impermanence
             # inputs.sops-nix.nixosModules.sops
-            # { programs.hyprland.enable = true; }
+            { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
