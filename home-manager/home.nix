@@ -57,6 +57,12 @@ in
     direnv.nix-direnv.enable = true;
   };
 
+  # Place Files Inside Home Directory
+  home.file."Pictures/Wallpapers" = {
+    source = ./wallpapers;
+    recursive = true;
+  };
+
   # Styling Options
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
