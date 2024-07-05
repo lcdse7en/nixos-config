@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   networking = {
-    networkmanager.enable = true;
+    # networkmanager.enable = true;
     firewall.enable = false;
     firewall.allowedTCPPorts = [ 5173 1420 ];
     # hosts = {
@@ -34,6 +34,26 @@
     ];
   };
 
+  users = {
+    users = {
+      se7en = {
+        shell = pkgs.fish;
+        isNormalUser = true;
+        home = "/home/se7en";
+        extraGroups = [ "wheel" "networkmanager" ];
+        packages = with pkgs; [
+          vim
+          git
+        ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsT6GLG7sY8YKX7JM+jqS3EAti3YMzwHKWViveqkZvu"
+        ];
+      };
+    };
+  };
+
+  programs.fish.enable = true;
+
   services = {
     # Enable the OpenSSH daemon.
     openssh = {
@@ -46,20 +66,20 @@
       };
     };
     # Enable CUPS to print documents.
-    # printing.enable = true;
-    # pipewire = {
-    #   enable = true;
-    #   alsa.enable = true;
-    #   alsa.support32Bit = true;
-    #   pulse.enable = true;
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
 
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-    # };
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
   };
 
   # Enable sound with pipewire.

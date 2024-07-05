@@ -10,7 +10,7 @@
       use-cgroups = true;
       auto-optimise-store = true; # Optimise syslinks
       accept-flake-config = true;
-      flake-registry = "${inputs.flake-registry}/flake-registry.json";
+      # flake-registry = "${inputs.flake-registry}/flake-registry.json";
       builders-use-substitutes = true;
       keep-derivations = true;
       keep-outputs = true;
@@ -45,9 +45,9 @@
       allowUnsupportedSystem = true;
       allowUnfree = true;
     };
-    overlays = [
-      self.overlays.default
-      inputs.rust-overlay.overlays.default
-    ];
+    # overlays = [
+    #   self.overlays.default
+    #   inputs.rust-overlay.overlays.default
+    # ];
   };
 }

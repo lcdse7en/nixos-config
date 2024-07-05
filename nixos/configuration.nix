@@ -12,6 +12,7 @@
       ./core.nix
       ./fonts.nix
       ./desktop.nix
+      ./nix.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -60,25 +61,6 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    users = {
-      se7en = {
-        shell = pkgs.fish;
-        isNormalUser = true;
-        home = "/home/se7en";
-        extraGroups = [ "wheel" "networkmanager" ];
-        packages = with pkgs; [
-          vim
-          git
-        ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsT6GLG7sY8YKX7JM+jqS3EAti3YMzwHKWViveqkZvu"
-        ];
-      };
-    };
-  };
-
-  programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -144,62 +126,11 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
+  # system.stateVersion = "24.05"; # Did you read the comment?
 
   # programs.hyprland = {
   #   enable = true;
   #   xwayland.enable = true;
   # };
-
-  nix = {
-    channel.enable = false;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    settings = {
-      nix-path = lib.mkForce "nixpkgs=flake:nixpkgs";
-      experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "configurable-impure-env" "cgroups" ];
-      auto-allocate-uids = true;
-      use-cgroups = true;
-      auto-optimise-store = true; # Optimise syslinks
-      accept-flake-config = true;
-      # flake-registry = "${inputs.flake-registry}/flake-registry.json";
-      builders-use-substitutes = true;
-      keep-derivations = true;
-      keep-outputs = true;
-      substituters = [
-        "https://nix-community.cachix.org"
-        "https://hyprland.cachix.org"
-        "https://ruixi-rebirth.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
-      ];
-      trusted-users = [ "root" "@wheel" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-    package = pkgs.nixVersions.git;
-    registry.nixpkgs.flake = inputs.nixpkgs;
-    extraOptions = ''
-      keep-outputs            = true
-      keep-derivations        = true
-    '';
-  };
-
-  nixpkgs = {
-    config = {
-      allowBroken = true;
-      allowUnsupportedSystem = true;
-      allowUnfree = true;
-    };
-    # overlays = [
-    #   self.overlays.default
-    #   inputs.rust-overlay.overlays.default
-    # ];
-  };
 
 }
