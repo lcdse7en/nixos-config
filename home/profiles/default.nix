@@ -12,7 +12,7 @@ let
   ];
 
   homeImports = {
-    "${user}@k-no" = [ ./se7en ] ++ sharedModules;
+    "${user}@k-no" = [ ./k-no ] ++ sharedModules;
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
