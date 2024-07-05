@@ -183,6 +183,8 @@
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
 
+      bind = $mainMod, n, exec, screenshootin
+
       #-----------------------#
       # Toggle grouped layout #
       #-----------------------#

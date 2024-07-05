@@ -21,10 +21,6 @@ in
     username = "se7en";
     homeDirectory = "/home/se7en";
     stateVersion = "24.05";
-
-    packages = with pkgs;
-      [
-      ];
   };
 
   home.file = {
@@ -61,4 +57,7 @@ in
     direnv.nix-direnv.enable = true;
   };
 
+  home.packages = [
+    (import ../scripts/screenshootin.nix { inherit pkgs; })
+  ];
 }
