@@ -43,13 +43,11 @@ in
     ./wm/hyprland
 
     (import ./editors/neovim { inherit config configDir; })
-    # (import ./wm/hyprland { inherit config configDir; })
 
   ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    # TERMINAL = "kitty";
     BROWSER = "brave";
   };
 
