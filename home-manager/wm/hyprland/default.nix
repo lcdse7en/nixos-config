@@ -38,7 +38,9 @@
     };
   };
 
-  # home.file = {
-  #   ".config/hypr/hyprland.conf".source = ./hyprland.conf;
-  # };
+  home.file = {
+    ".config/hypr/themes/colors.conf".source = ./themes/colors.conf;
+    ".config/hypr/themes/common.conf".source = ./themes/common.conf;
+    ".config/hypr/themes/theme.conf".source = ./themes/theme.conf;
+  };
 }

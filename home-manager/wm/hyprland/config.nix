@@ -396,8 +396,8 @@
       # workspace rules #
       #-----------------#
 
-# ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄
-# █▀ █▀█ █░█ █▀█ █▀▀ █▀▀
+      # ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄
+      # █▀ █▀█ █░█ █▀█ █▀▀ █▀▀
 
       source = ~/.config/hypr/themes/common.conf # shared theme settings
       source = ~/.config/hypr/themes/theme.conf # theme specific settings
