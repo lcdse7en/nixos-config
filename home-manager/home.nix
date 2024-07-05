@@ -62,8 +62,8 @@ in
     source = ./wallpapers;
     recursive = true;
   };
-  home.file.".config/hypr/themes/theme.conf" = {
-    source = ./wm/hyprland/themes/theme.conf;
+  home.file.".config/hypr/themes" = {
+    source = ./themes;
     recursive = true;
   };
 
