@@ -110,7 +110,14 @@
           modules = [
             ./nixos/configuration.nix
             # hyprland.nixosModules.default
-            { programs.hyprland.enable = true; }
+            {
+              programs.hyprland.enable = true;
+              home.file = {
+                ".config/hypr/themes/colors.conf".source = ./home-manager/wm/hyprland/themes/colors.conf/themes/colors.conf;
+                ".config/hypr/themes/common.conf".source = ./home-manager/wm/hyprland/themes/common.conf;
+                ".config/hypr/themes/theme.conf".source = ./home-manager/wm/hyprland/themes/theme.conf;
+              };
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
