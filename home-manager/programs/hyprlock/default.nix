@@ -11,14 +11,14 @@
         };
         background = [
           {
-            path = "/home/se7en/Pictures/wallpapers/use/1920*1080/airplane.png";
+            path = "/home/se7en/Pictures/wallpapers/korea/main_bg5.jpg";
             blur_passes = 3;
             blur_size = 8;
           }
         ];
         image = [
           {
-            path = "/home/se7en/Pictures/wallpapers/use/1920*1080/airplane.png";
+            path = "/home/se7en/Pictures/wallpapers/korea/main_bg5.jpg";
             size = 150;
             border_size = 4;
             border_color = "rgb(0C96F9)";
