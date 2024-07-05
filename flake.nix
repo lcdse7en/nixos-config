@@ -87,7 +87,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, stylix, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";

@@ -1,6 +1,10 @@
 { pkgs, config, ... }:
 
 {
+  imports = [
+    ./config-emoji.nix
+    ./config-long.nix
+  ];
   programs = {
     rofi = {
       enable = true;
