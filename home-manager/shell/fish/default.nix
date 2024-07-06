@@ -12,7 +12,7 @@ let
   };
   aliases = {
     # "rebuild" = "sudo nixos-rebuild switch --flake ${flakePath}//.#nixos";
-    "rebuild" = ''
+    rebuild = ''
       cd $flakePath
       sudo nixos-rebuild switch --flake \.\#nixos
     '';
