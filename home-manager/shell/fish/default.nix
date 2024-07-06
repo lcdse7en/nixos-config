@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  flakePath = "~/nixos-config";
+  flakePath = "~/nixos-config/.#nixos";
   abbr = {
     "vim" = "nvim";
     "yy" = "yazi";
@@ -11,7 +11,7 @@ let
     "gc" = "git clone";
   };
   aliases = {
-    "rebuild" = "sudo nixos-rebuild switch --flake $flakePath/.#nixos";
+    "rebuild" = "sudo nixos-rebuild switch --flake ${flakePath}";
     cat = "bat";
     gogit = "cd ~/git";
     "!!" = "eval \\$history[1]";
