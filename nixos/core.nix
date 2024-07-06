@@ -67,21 +67,69 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
+      fcitx5-rime
+
+      # Chinese
       fcitx5-chinese-addons
       fcitx5-table-extra
-      fcitx5-chewing
+      fcitx5-pinyin-moegirl
+      fcitx5-pinyin-zhwiki
+
+      # Japanese
+      fcitx5-mozc
     ];
     fcitx5.ignoreUserConfig = true;
+    fcitx5.settings.globalOptions = {
+      Hotkey = {
+        # Enumerate when press trigger key repeatedly
+        EnumerateWithTriggerKeys = "True";
+        # Skip first input method while enumerating
+        EnumerateSkipFirst = "False";
+      };
+      "Hotkey/EnumerateForwardKeys" = { "0" = "Control+space"; };
+      "Hotkey/EnumerateBackwardKeys" = { "0" = "Control+Shift+space"; };
+      "Hotkey/PrevPage" = { "0" = "Up"; };
+      "Hotkey/NextPage" = { "0" = "Down"; };
+      "Hotkey/PrevCandidate" = { "0" = "Shift+Tab"; };
+      "Hotkey/NextCandidate" = { "0" = "Tab"; };
+      Behavior = {
+        # Active By Default
+        ActiveByDefault = "False";
+        # Share Input State
+        ShareInputState = "No";
+        # Show preedit in application
+        PreeditEnabledByDefault = "True";
+        # Show Input Method Information when switch input method
+        ShowInputMethodInformation = "True";
+        # Show Input Method Information when changing focus
+        showInputMethodInformationWhenFocusIn = "False";
+        # Show compact input method information
+        CompactInputMethodInformation = "True";
+        # Show first input method information
+        ShowFirstInputMethodInformation = "True";
+        # Default page size
+        DefaultPageSize = "5";
+        # Override Xkb Option
+        OverrideXkbOption = "False";
+        # Preload input method to be used by default
+        PreloadInputMethod = "True";
+      };
+    };
     fcitx5.settings.inputMethod = {
       "Groups/0" = {
-        "Name" = "gCangjie";
+        "Name" = "Default";
         "Default Layout" = "us";
-        "DefaultIM" = "cangjie5";
+        "DefaultIM" = "mozc";
       };
       "Groups/0/Items/0" = {
-        "Name" = "cangjie5";
+        "Name" = "keyboard-us";
         "Layout" = null;
       };
+      "Groups/0/Items/1" = {
+        "Name" = "mozc";
+        "Layout" = null;
+      };
+      "GroupOrder" = { "0" = "Default"; };
     };
   };
 
