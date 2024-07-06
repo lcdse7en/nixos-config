@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, nixosConfig, ... }:
 let configDir = "${config.home.homeDirectory}/dotfiles";
 in {
   nixpkgs.overlays = [
@@ -42,6 +42,9 @@ in {
     EDITOR = "nvim";
     # BROWSER = "brave";
   };
+
+  xdg.enable = true;
+  home.stateVersion = nixosConfig.system.stateVersion;
 
   programs = {
     # Let Home Manager install and manage itself.
