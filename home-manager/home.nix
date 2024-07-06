@@ -1,13 +1,6 @@
-{ inputs
-, config
-, pkgs
-, lib
-, ...
-}:
-let
-  configDir = "${config.home.homeDirectory}/dotfiles";
-in
-{
+{ inputs, config, pkgs, lib, ... }:
+let configDir = "${config.home.homeDirectory}/dotfiles";
+in {
   nixpkgs.overlays = [
     (final: prev:
       (import ../packages {
@@ -37,6 +30,7 @@ in
     # ./dev
 
     ./wm/hyprland
+    ./wm/hyprlock
 
     (import ./editors/neovim { inherit config pkgs configDir; })
 
@@ -72,12 +66,8 @@ in
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
   qt = {
     enable = true;
