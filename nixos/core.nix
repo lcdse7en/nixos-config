@@ -65,8 +65,24 @@
   programs.fish.enable = true;
 
   i18n.inputMethod = {
-
-    enabled = "fcitx";
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-chinese-addons
+      fcitx5-table-extra
+      fcitx5-chewing
+    ];
+    fcitx5.ignoreUserConfig = true;
+    fcitx5.settings.inputMethod = {
+      "Groups/0" = {
+        "Name" = "gCangjie";
+        "Default Layout" = "us";
+        "DefaultIM" = "cangjie5";
+      };
+      "Groups/0/Items/0" = {
+        "Name" = "cangjie5";
+        "Layout" = null;
+      };
+    };
   };
 
   services = {
