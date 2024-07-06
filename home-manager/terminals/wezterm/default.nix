@@ -5,6 +5,9 @@ let
 in
 
 {
+  home = {
+    packages = with pkgs; [ maple-mono ];
+  };
   programs.wezterm = {
     enable = true;
     extraConfig = weztermConfig;
