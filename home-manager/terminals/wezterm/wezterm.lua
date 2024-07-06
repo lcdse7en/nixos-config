@@ -186,7 +186,7 @@ config.keys = {
   mods = 'META',
   action = wezterm.action.SpawnCommandInNewTab({
     -- args = { ${fish_path_lua_str} },
-    args = { /etc/profiles/per-user/se7en/bin/fish
+    args = { /etc/profiles/per-user/se7en/bin/fish },
     cwd = wezterm.home_dir,
   }),
 },
