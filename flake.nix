@@ -85,9 +85,10 @@
 
     nur.url = "github:nix-community/NUR";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs-system.url = "github:eljamm/nixpkgs/system";
   };
