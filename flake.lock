@@ -1115,6 +1115,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-system": {
+      "locked": {
+        "lastModified": 1718704901,
+        "narHash": "sha256-97q3X8Gb3Ceo1FrtTlQlMBuAnjO1EgtxF/UAbn60O2I=",
+        "owner": "eljamm",
+        "repo": "nixpkgs",
+        "rev": "d9415e513215c8a045b21ca66433235b09616be0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eljamm",
+        "ref": "system",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-wayland": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1314,6 +1330,7 @@
         "nixd": "nixd",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-system": "nixpkgs-system",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",

@@ -46,7 +46,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "brave";
+    # BROWSER = "brave";
   };
 
   programs = {
