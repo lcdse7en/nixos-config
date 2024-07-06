@@ -16,6 +16,29 @@ local function scheme_for_appearance(appearance)
   end
 end
 
+config.font = wezterm.font({
+  family = 'Maple Mono',
+  harfbuzz_features = {
+    'cv03',
+    'cv04',
+    'ss01',
+    'ss02',
+    'ss03',
+    'ss04',
+    'ss05',
+  },
+})
+config.font_size = 11
+config.window_padding = {
+  top = 20,
+  bottom = 0,
+  left = 20,
+  right = 20,
+}
+
+config.window_background_opacity = 0.75
+config.text_background_opacity = 0.75
+
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 --- Spawn a fish shell in login mode
