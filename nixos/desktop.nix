@@ -28,7 +28,9 @@
   #   };
   # };
 
-  environment = {
+  services.xserver.desktopManager.runXdgAutostartIfNone
+
+    environment = {
     systemPackages = with pkgs; [
       libnotify
       wl-clipboard
