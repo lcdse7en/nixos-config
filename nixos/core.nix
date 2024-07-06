@@ -64,6 +64,11 @@
 
   programs.fish.enable = true;
 
+  i18n.inputMethod = {
+
+    enabled = "fcitx";
+  };
+
   services = {
     # Enable the OpenSSH daemon.
     openssh = {
