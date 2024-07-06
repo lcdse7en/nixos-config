@@ -33,7 +33,9 @@
 
   time.timeZone = "Asia/Shanghai";
 
-  i18n.defaultLocale = lib.mkForce "zh_CN.UTF-8";
+  # i18n.defaultLocale = lib.mkForce "zh_CN.UTF-8";
+  i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
+
   # i18n = {
   #   defaultLocale = lib.mkForce "zh_CN.UTF-8";
   #   extraLocaleSettings = {
