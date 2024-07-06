@@ -13,8 +13,7 @@ let
   aliases = {
     # "rebuild" = "sudo nixos-rebuild switch --flake ${flakePath} .";
     rebuild = ''
-      cd $flakePath
-      sudo nixos-rebuild switch --flake \.#nixos
+      sudo nixos-rebuild switch --flake ~/nixos-config/\.#nixos
     '';
     cat = "bat";
     gogit = "cd ~/git";
