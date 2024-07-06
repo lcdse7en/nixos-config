@@ -58,7 +58,7 @@ local tabs_total_width = 0
 for _, tab in ipairs(mux_win:tabs()) do
   tabs_total_width = tabs_total_width + #format_tab_title(tab, 0, tab_max_width, true) + 6
 end
--- window:set_left_status(string.rep(' ', (total_width / 2) - (tabs_total_width / 2)))
+window:set_left_status(string.rep(' ', (total_width / 2) - (tabs_total_width / 2)))
 end)
 wezterm.on('format-tab-title', function(tab, tabs)
 local i = tab.tab_index
