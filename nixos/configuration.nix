@@ -5,17 +5,17 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./core.nix
-      ./nix.nix
-      ./allowed-unfree.nix
-      ./fonts.nix
-      ./desktop.nix
-      # ./impermanence.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./core.nix
+    ./nix.nix
+    ./allowed-unfree.nix
+    ./fonts.nix
+    ./desktop.nix
+    ./udiskie.nix
+    # ./impermanence.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
