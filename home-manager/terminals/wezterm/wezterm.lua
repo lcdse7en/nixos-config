@@ -99,9 +99,9 @@ end)
 -- config.color_scheme = 'tokyonight_night'
 config.color_scheme = 'Catppuccin Mocha'
 config.colors = {
-tab_bar = {
-  background = '#292e42'
-}
+  tab_bar = {
+    background = '#292e42'
+  }
 }
 -- config.cursor_blink_rate = 0
 config.font = wezterm.font({
