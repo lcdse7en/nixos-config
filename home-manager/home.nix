@@ -20,6 +20,11 @@ in {
     # ".config/hypr/hyprland.conf".source = ../dotfiles/config/hypr/hyprland.conf;
   };
 
+  i18n.inputMethod = {
+    enabled = "fcitx";
+
+  };
+
   imports = [
     ./shell
     ./terminals
