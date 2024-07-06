@@ -1,7 +1,6 @@
-{ pkgs, config, user, ... }:
-{
+{ pkgs, config, user, ... }: {
   networking = {
-    hostName = "se7en";
+    hostName = "nixos";
     # networkmanager.enable = true;
     firewall.enable = false;
     firewall.allowedTCPPorts = [ 5173 1420 ];
@@ -55,10 +54,7 @@
         isNormalUser = true;
         home = "/home/se7en";
         extraGroups = [ "wheel" "networkmanager" ];
-        packages = with pkgs; [
-          vim
-          git
-        ];
+        packages = with pkgs; [ vim git ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsT6GLG7sY8YKX7JM+jqS3EAti3YMzwHKWViveqkZvu"
         ];
