@@ -11,7 +11,7 @@ let
     "gc" = "git clone";
   };
   aliases = {
-    "rebuild" = "sudo nixos-rebuild switch --flake ${flakePath}/.#nixos";
+    "rebuild" = "sudo nixos-rebuild switch --flake $flakePath/.#nixos";
     cat = "bat";
     gogit = "cd ~/git";
     "!!" = "eval \\$history[1]";
