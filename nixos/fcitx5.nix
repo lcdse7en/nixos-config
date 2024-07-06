@@ -17,27 +17,27 @@ let
       ...
     '';
 in {
-  xdg.configFile."fcitx5/profile" = {
-    text = ''
-      [Groups/0]
-      # Group Name
-      Name=Default
-      # Layout
-      Default Layout=us
-      # Default Input Method
-      DefaultIM=rime
-
-      [Groups/0/Items/0]
-      # Name
-      Name=rime
-      # Layout
-      Layout=
-
-      [GroupOrder]
-      0=Default
-    '';
-    force = true;
-  };
+  # xdg.configFile."fcitx5/profile" = {
+  #   text = ''
+  #     [Groups/0]
+  #     # Group Name
+  #     Name=Default
+  #     # Layout
+  #     Default Layout=us
+  #     # Default Input Method
+  #     DefaultIM=rime
+  #
+  #     [Groups/0/Items/0]
+  #     # Name
+  #     Name=rime
+  #     # Layout
+  #     Layout=
+  #
+  #     [GroupOrder]
+  #     0=Default
+  #   '';
+  #   force = true;
+  # };
   xdg.dataFile = {
     "fcitx5/themes".source =
       "${nixosConfig.nur.repos.xddxdd.fcitx5-breeze}/share/fcitx5/themes";
