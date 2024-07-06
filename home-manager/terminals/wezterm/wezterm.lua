@@ -1,4 +1,3 @@
-
 local wezterm = require('wezterm')
 local oct = wezterm.action
 local config = wezterm.config_builder()
@@ -186,7 +185,8 @@ config.keys = {
   key = 'n',
   mods = 'META',
   action = wezterm.action.SpawnCommandInNewTab({
-    args = { ${fish_path_lua_str} },
+    -- args = { ${fish_path_lua_str} },
+    args = { /etc/profiles/per-user/se7en/bin/fish
     cwd = wezterm.home_dir,
   }),
 },
