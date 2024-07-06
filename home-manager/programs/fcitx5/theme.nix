@@ -9,7 +9,7 @@
 
   [InputPanel]
   # 字体
-  Font=Sans 13
+  Font=Sans 10
   # 非选中候选字颜色
   NormalColor=#81a1c1
   # 选中候选字颜色
@@ -18,7 +18,7 @@
   HighlightColor=#5e81ac
   # 输入字符背景颜色
   HighlightBackgroundColor=#eceff4
-  # 
+  #
   Spacing=3
 
   [InputPanel/TextMargin]
