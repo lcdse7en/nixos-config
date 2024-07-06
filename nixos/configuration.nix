@@ -14,7 +14,6 @@
     ./fonts.nix
     ./desktop.nix
     ./udiskie.nix
-    ./fcitx5.nix
     # ./impermanence.nix
   ];
 
