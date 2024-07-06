@@ -1,4 +1,4 @@
-{ config, configDir, ... }:
+{ config, pkgs, configDir, ... }:
 {
   # HACK: manix
   # https://github.com/nix-community/manix/issues/18

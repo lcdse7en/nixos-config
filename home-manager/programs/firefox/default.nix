@@ -52,7 +52,6 @@ in
               /*   max-width: 200px !important; */
               /* } */
 
-
               /* only remove TST headers */
         #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
                 display: none; /* remove sidebar header */
@@ -67,15 +66,13 @@ in
                 border-color: var(--base_color2) !important;
               }
 
-              /* remove top tabbar */ 
+              /* remove top tabbar */
         #titlebar { visibility: collapse !important; }
-
 
               /*================== URL BAR ==================*/
         #urlbar .urlbar-input-box {
                 text-align: center !important;
               }
-
 
               * {
               font-family: JetBrainsMono Nerd Font Mono !important;
@@ -100,7 +97,6 @@ in
                 /*hide all scroll bars*/
                 /* *{ scrollbar-width: none !important } */
 
-
                 * {
                 font-family: JetBrainsMono Nerd Font Mono;
                 }
@@ -110,8 +106,7 @@ in
                         --in-content-page-background: #1E1E2E !important;
                     }
                 }
-        
-        
+
                 @-moz-document url-prefix(about:home), url-prefix(about:newtab){
 
             /* show nightly logo instead of default firefox logo in newtabpage */

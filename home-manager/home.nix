@@ -38,7 +38,7 @@ in
 
     ./wm/hyprland
 
-    (import ./editors/neovim { inherit config configDir; })
+    (import ./editors/neovim { inherit config pkgs configDir; })
 
     # ../pkgs
 
