@@ -1,6 +1,5 @@
-{ pkgs, config, inputs, lib, ... }:
-{
-  # imports = [ ../../programs/waybar/hyprland_waybar.nix ];
+{ pkgs, config, inputs, lib, ... }: {
+  imports = [ ../../programs/waybar/hyprland_waybar.nix ];
   wayland.windowManager.hyprland = {
     extraConfig = ''
 
@@ -410,7 +409,9 @@
       source = ~/.config/hypr/themes/colors.conf # wallbash color override
 
       # workspace=HDMI-A-1,10
-    '' + (if config.wayland.windowManager.hyprland.plugins == [ ] then "" else ''
+    '' + (if config.wayland.windowManager.hyprland.plugins == [ ] then
+      ""
+    else ''
       #---------#
       # plugins #
       #---------#
