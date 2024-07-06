@@ -34,7 +34,8 @@
   time.timeZone = "Asia/Shanghai";
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = lib.mkForce "zh_CN.UTF-8";
+    # defaultLocale = lib.mkForce "en_US.UTF-8";
     extraLocaleSettings = {
       LC_ALL = "en_US.UTF-8";
       LANGUAGE = "en_US.UTF-8";
@@ -63,8 +64,6 @@
   };
 
   programs.fish.enable = true;
-
-  i18n.defaultLocale = lib.mkForce "zh_CN.UTF-8"
 
   i18n.inputMethod = {
     enabled = "fcitx5";
