@@ -14,7 +14,7 @@ let
     # "rebuild" = "sudo nixos-rebuild switch --flake ${flakePath}//.#nixos";
     "rebuild" = ''
       cd $flakePath
-      sudo nixos-rebuild switch --flake .#nixos
+      sudo nixos-rebuild switch --flake \.\#nixos
     '';
     cat = "bat";
     gogit = "cd ~/git";
