@@ -1,5 +1,10 @@
+{ pkgs, ... }:
 {
-  programs.dunst.enable = true;
+  home = {
+    packages = with pkgs; [
+      dunst
+    ];
+  };
 
   home.file.".config/dunst/dunstrc".text = ''
     [global]
