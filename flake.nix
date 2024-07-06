@@ -85,6 +85,8 @@
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    nixpkgs-system.url = "github:eljamm/nixpkgs/system";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
