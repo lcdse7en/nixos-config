@@ -104,10 +104,13 @@
 
   environment = {
     shells = with pkgs; [ fish ];
+    sessionVariables = {
+      NIX_PROFILES = "${concatStringsSep " " (reverseList config.environment.profiles)}";
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+    };
     systemPackages = with pkgs; [
-      nixpkgs-fmt
-      lua-language-server
-      stylua
       gofumpt
       gcc
       clang
@@ -116,7 +119,6 @@
       ninja
       git
       wget
-      bat
       p7zip
       atool
       unzip
