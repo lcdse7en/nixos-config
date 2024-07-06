@@ -104,12 +104,6 @@
 
   environment = {
     shells = with pkgs; [ fish ];
-    sessionVariables = {
-      NIX_PROFILES = "${concatStringsSep " " (reverseList config.environment.profiles)}";
-      GTK_IM_MODULE = "fcitx";
-      QT_IM_MODULE = "fcitx";
-      XMODIFIERS = "@im=fcitx";
-    };
     systemPackages = with pkgs; [
       gofumpt
       gcc

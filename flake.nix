@@ -3,7 +3,8 @@
 
   nixConfig = {
     # enable nixcomman and flakes for nixos-rebuild switch --flake
-    experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "cgroups" ];
+    experimental-features =
+      [ "nix-command" "flakes" "auto-allocate-uids" "cgroups" ];
     # replace official cache with mirrors located in China
     substituters = [
       "https://mirrors.cernet.edu.cn/nix-channels/store"
@@ -48,22 +49,20 @@
       url = "github:hyprwm/Hyprland?ref=v0.41.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-    };
-    hyprcursor = {
-      url = "github:hyprwm/hyprcursor";
-    };
+    hyprlock = { url = "github:hyprwm/hyprlock"; };
+    hyprcursor = { url = "github:hyprwm/hyprcursor"; };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
     hycov = {
-      url = "github:DreamMaoMao/hycov?rev=7f4aa3c1111938e88ca8d1774270fd67cb399399";
+      url =
+        "github:DreamMaoMao/hycov?rev=7f4aa3c1111938e88ca8d1774270fd67cb399399";
       inputs.hyprland.follows = "hyprland";
     };
     hypreasymotion = {
-      url = "github:DreamMaoMao/hyprland-easymotion?rev=54a8fb0e5652b79fb4f8399506696f1c32b59aaa";
+      url =
+        "github:DreamMaoMao/hyprland-easymotion?rev=54a8fb0e5652b79fb4f8399506696f1c32b59aaa";
       inputs.hyprland.follows = "hyprland";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -89,7 +88,8 @@
     nixpkgs-system.url = "github:eljamm/nixpkgs/system";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
+  outputs =
+    inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";
@@ -99,8 +99,7 @@
       };
       lib = nixpkgs.lib;
       # selfPkgs = import ./pkgs;
-    in
-    {
+    in {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -115,18 +114,14 @@
             ./nixos/configuration.nix
             inputs.stylix.nixosModules.stylix
             # hyprland.nixosModules.default
-            {
-              programs.hyprland.enable = true;
-            }
+            { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 users.se7en = import ./home-manager/home.nix;
-                extraSpecialArgs = {
-                  inherit inputs user;
-                };
+                extraSpecialArgs = { inherit inputs user; };
               };
             }
           ];

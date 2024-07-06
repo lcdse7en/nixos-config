@@ -20,7 +20,7 @@
       lldb # comes with lldb-vscode
 
       # formatters and linters
-      nixfmt
+      nixfmt-classic
       rustfmt
       shfmt
       stylua
