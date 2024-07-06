@@ -83,7 +83,11 @@
     impermanence.url = "github:nix-community/impermanence";
     wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
 
+    nur.url = "github:nix-community/NUR";
+
     sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     nixpkgs-system.url = "github:eljamm/nixpkgs/system";
   };
