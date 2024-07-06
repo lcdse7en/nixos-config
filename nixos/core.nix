@@ -1,4 +1,4 @@
-{ pkgs, config, user, ... }: {
+{ pkgs, config, lib, user, ... }: {
   networking = {
     hostName = "nixos";
     # networkmanager.enable = true;
@@ -64,11 +64,12 @@
 
   programs.fish.enable = true;
 
+  i18n.defaultLocale = lib.mkForce "zh_CN.UTF-8"
+
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
       rime-data
-      fcitx5-gtk
       fcitx5-rime
 
       # Chinese
