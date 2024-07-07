@@ -29,23 +29,43 @@
   # };
 
   programs.waybar.enable = true;
+  programs.waybar.style = ./style.css;
 
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
-      position = "top";
-      height = 26;
+      height = 30;
+      margin-top = 10;
+      margin-left = 10;
+      margin-bottom = 0;
+      margin-right = 10;
+      spacing = 0;
+      # position = "top";
       # output = [ "eDP-1" ];
 
       modules-left = [
+        "custom/separator"
         "custom/logo"
         "custom/separator"
+        "cpu"
+        "memory"
+        "temperature"
+        "custom/filler"
         "custom/playerctl"
         "custom/filler"
-        "pulseaudio"
-        "custom/dot"
+        "disk"
+        "custom/filler"
       ];
-      modules-right = [ "cpu" "memory" "temperature" "custom/filler" "clock" ];
+      modules-right = [
+        "custom/dot"
+        "network"
+        "custom/separator"
+        "custom/dot"
+        "pulseaudio"
+        "custom/separator"
+        "custom/clock-icon"
+        "clock"
+      ];
       modules-center = [ "hyprland/workspaces" ];
 
       "custom/logo" = {
@@ -54,8 +74,13 @@
       };
       "custom/filler" = { "format" = " "; };
       "custom/dot" = { "format" = " "; };
-      "custom/clock-icon" = { "format" = ""; };
+      "custom/clock-icon" = { "format" = ""; };
       "custom/separator" = { "format" = " "; };
+      "custom/window-name" = {
+        "format" = " <b>{}</b>";
+        "interval" = 1;
+        "exec" = "hyprctl activewindow | grep class | awk '{print $2}'";
+      };
 
       "hyprland/workspaces" = {
         "all-outputs" = true;
@@ -71,13 +96,22 @@
           "4" = "";
           "5" = "";
           "6" = "";
-          "7" = "";
-          "8" = "";
-          "9" = "";
           "urgent" = "";
           "active" = "";
           "default" = "";
         };
+      };
+
+      "disk" = {
+        "interval" = 1;
+        "format" = ''<span color="#68b0d6"> </span> {}%'';
+        "on-click" = "filelight /";
+        "on-click-right" = "filelight /home/";
+      };
+
+      "tray" = {
+        "icon-size" = 20;
+        "spacing" = 8;
       };
 
       "clock" = {
@@ -90,13 +124,13 @@
 
       "cpu" = {
         "interval" = 10;
-        "format" = " {usage}% ";
+        "format" = " {usage}%";
         "max-length" = 10;
         "on-click" = "btop";
       };
       "memory" = {
         "interval" = 30;
-        "format" = " {}% ";
+        "format" = " {used}GiB";
         "format-alt" = " {used:0.1f}G";
         "max-length" = 10;
         "on-click-right" = "btop";
@@ -134,20 +168,27 @@
         "on-click-right" = "pavucontrol";
       };
 
-      # "hyprland/workspaces" = {
-      #   format = "{icon}";
-      #   tooltip = false;
-      #   all-outputs = true;
-      #   format-icons = {
-      #     active = "";
-      #     default = "";
-      #   };
-      # };
-
       "network" = {
-        format = "  ";
-        format-ethernet = "  ";
-        tooltip = false;
+        "format-wifi" = " ";
+        "format-ethernet" =
+          "󰈀   {bandwidthDownBits}  {bandwidthUpBits} {ipaddr}";
+        "tooltip-format" = ''
+          Network: <big><b>{essid}</b></big>
+          Signal strength: <b>{signaldBm}dBm
+                  ({signalStrength}%)</b>
+          Frequency: <b>{frequency}MHz</b>
+          Interface: <b>{ifname}</b>
+          IP:
+                  <b>{ipaddr}/{cidr}</b>
+          Gateway: <b>{gwaddr}</b>
+          Netmask: <b>{netmask}</b>'';
+        "format-linked" = "󰈀 {ifname} (No IP)";
+        "format-disconnected" = "󰖪 ";
+        "tooltip-format-disconnected" = "Disconnected";
+        "format-alt" = ''
+          <span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'>
+                {bandwidthUpBytes}</span>'';
+        "interval" = 2;
       };
 
       "battery" = {
@@ -163,41 +204,4 @@
 
     };
   };
-
-  programs.waybar.style = ''
-    * {
-      padding: 0;
-      margin: 0;
-      font-family: JetBrainsMono Nerd Font;
-      border: none;
-      border-radius: 0;
-      font-size: 16px;
-      color: #1a1c2b;
-    }
-
-    window#waybar {
-      background: rgba(0,0,0,0,);
-    }
-
-    #custom-logo {
-      font-size: 18px;
-      margin: 0;
-      margin-left: 7px;
-      margin-right: 12px;
-      padding: 0;
-      font-family: Fira Code;
-      color: #b4befe;
-    }
-
-    #workspaces button {
-      color: #b4befe;
-    }
-
-    #battery {
-      margin-left: 7px;
-      margin-right: 5px;
-      color: #b4befe;
-    }
-  '';
-
 }
