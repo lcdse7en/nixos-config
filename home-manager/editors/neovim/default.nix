@@ -1,11 +1,11 @@
-{ config, pkgs, configDir, ... }:
-{
+{ config, pkgs, configDir, ... }: {
   # HACK: manix
   # https://github.com/nix-community/manix/issues/18
   manual.json.enable = true;
 
   programs.neovim = {
     enable = true;
+    packages = pkgs.neovim-unwrapped;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
