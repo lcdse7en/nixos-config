@@ -1,185 +1,162 @@
-{ config, lib, pkgs, user, ... }:
+{ pkgs, ... }:
 let
-  inherit (lib) types mkIf mkMerge optionalAttrs;
-  inherit (lib.se7en) mkBoolOpt mkOpt;
-
-  cfg = config.se7en.programs.graphical.browsers.firefox;
-
-  firefoxPath = if pkgs.stdenv.isLinux then
-    ".mozilla/firefox/${config.se7en.user.name}"
-  else
-    "/Users/${config.user.user.name}/Library/Application Support/Firefox/Profiles/${config.se7en.user.name}";
-in {
-  options.se7en.programs.graphical.browsers.firefox = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Firefox.";
-    hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
-    gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
-    extraConfig =
-      mkOpt str "" "Extra configuration for the user profile JS file.";
-    settings = mkOpt attrs { } "Settings to apply to the profile.";
-    userChrome =
-      mkOpt str "" "Extra configuration for the user chrome CSS file.";
+  homepage = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/Ruixi-rebirth/someSource/main/firefox/homepage.html";
+    sha256 = "sha256-UmT5B/dMl5UCM5O+pSFWxOl5HtDV2OqsM1yHSs/ciQ4=";
   };
-
-  config = mkIf cfg.enable {
-    home = {
-      file = mkMerge [{
-        "${firefoxPath}/native-messaging-hosts/com.dannyvankooten.browserpass.json".source =
-          "${pkgs.browserpass}/lib/mozilla/native-messaging-hosts/com.dannyvankooten.browserpass.json";
-        "${firefoxPath}/chrome/img" = {
-          source =
-            lib.cleanSourceWith { src = lib.cleanSource ./chrome/img/.; };
-
-          recursive = true;
-        };
-      }];
+  bg = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/Ruixi-rebirth/someSource/main/firefox/bg.png";
+    sha256 = "sha256-dpMWCAtYT3ZHLftQQ32BIg800I7SDH6SQ9ET3yiOr90=";
+  };
+  logo = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/Ruixi-rebirth/someSource/main/firefox/logo.png";
+    sha256 = "sha256-e6L3xq4AXv3V3LV7Os9ZE04R7U8vxdRornBP5x4DWm8=";
+  };
+in
+{
+  home = {
+    sessionVariables = {
+      BROWSER = "firefox";
+      MOZ_ENABLE_WAYLAND = "1";
     };
-
-    programs.firefox = {
-      enable = true;
-      package = if pkgs.stdenv.isLinux then pkgs.firefox-devedition else null;
-
-      policies = {
-        CaptivePortal = false;
-        DisableFirefoxStudies = true;
-        DisableFormHistory = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DisplayBookmarksToolbar = true;
-        DontCheckDefaultBrowser = true;
-        FirefoxHome = {
-          Pocket = false;
-          Snippets = false;
-        };
-        PasswordManagerEnabled = false;
-        # PromptForDownloadLocation = true;
-        UserMessaging = {
-          ExtensionRecommendations = false;
-          SkipOnboarding = true;
-        };
-        ExtensionSettings = {
-          "ebay@search.mozilla.org".installation_mode = "blocked";
-          "amazondotcom@search.mozilla.org".installation_mode = "blocked";
-          "bing@search.mozilla.org".installation_mode = "blocked";
-          "ddg@search.mozilla.org".installation_mode = "blocked";
-          "wikipedia@search.mozilla.org".installation_mode = "blocked";
-
-          "frankerfacez@frankerfacez.com" = {
-            installation_mode = "force_installed";
-            install_url =
-              "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
-          };
-        };
-        Preferences = { };
+  };
+  programs.firefox = {
+    enable = true;
+    policies = {
+      DisplayBookmarksToolbar = true;
+      Preferences = {
+        "browser.toolbars.bookmarks.visibility" = "never";
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "media.ffmpeg.vaapi.enabled" = true;
       };
+    };
+    profiles.default = {
+      settings = {
+        "browser.startup.homepage" = "file://${homepage}";
+      };
+      userChrome = ''
+              /*================== SIDEBAR ==================*/
+              /* The default sidebar width. */
+              /* #sidebar-box { */
+              /*   overflow: hidden!important; */
+              /*   position: relative!important; */
+              /*   transition: all 300ms!important; */
+              /*   min-width: 60px !important; */
+              /*   max-width: 60px !important; */
+              /* } */
 
-      profiles = {
-        "dev-edition-default" = {
-          id = 0;
-          path = "${config.se7en.user.name}";
-        };
+              /* The sidebar width when hovered. */
+              /* #sidebar-box #sidebar,#sidebar-box:hover { */
+              /*   transition: all 300ms!important; */
+              /*   min-width: 60px !important; */
+              /*   max-width: 200px !important; */
+              /* } */
 
-        ${config.se7en.user.name} = {
-          inherit (cfg) extraConfig;
-          inherit (config.se7en.user) name;
+              /* only remove TST headers */
+        #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+                display: none; /* remove sidebar header */
+                border-color: var(--base_color2) !important;
+              }
 
-          id = 1;
+              /*******************/
+              .sidebar-splitter {
+                /* display: none;  remove sidebar split line */
+                min-width: 1px !important;
+                max-width: 1px !important;
+                border-color: var(--base_color2) !important;
+              }
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-            angular-devtools
-            auto-tab-discard
-            bitwarden
-            # NOTE: annoying new page and permissions
-            # bypass-paywalls-clean
-            darkreader
-            firefox-color
-            onepassword-password-manager
-            react-devtools
-            reduxdevtools
-            sidebery
-            sponsorblock
-            stylus
-            ublock-origin
-            user-agent-string-switcher
-          ];
+              /* remove top tabbar */
+        #titlebar { visibility: collapse !important; }
 
-          search = {
-            default = "DuckDuckGo";
-            privateDefault = "DuckDuckGo";
-            force = true;
-          };
+              /*================== URL BAR ==================*/
+        #urlbar .urlbar-input-box {
+                text-align: center !important;
+              }
 
-          settings = mkMerge [
-            cfg.settings
-            {
-              "accessibility.typeaheadfind.enablesound" = false;
-              "accessibility.typeaheadfind.flashBar" = 0;
-              "browser.aboutConfig.showWarning" = false;
-              "browser.aboutwelcome.enabled" = false;
-              "browser.bookmarks.autoExportHTML" = true;
-              "browser.bookmarks.showMobileBookmarks" = true;
-              "browser.meta_refresh_when_inactive.disabled" = true;
-              "browser.newtabpage.activity-stream.default.sites" = "";
-              "browser.newtabpage.activity-stream.showSponsored" = false;
-              "browser.newtabpage.activity-stream.showSponsoredTopSites" =
-                false;
-              "browser.search.hiddenOneOffs" =
-                "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
-              "browser.search.suggest.enabled" = false;
-              "browser.sessionstore.warnOnQuit" = true;
-              "browser.shell.checkDefaultBrowser" = false;
-              "browser.ssb.enabled" = true;
-              "browser.startup.homepage.abouthome_cache.enabled" = true;
-              "browser.startup.page" = 3;
-              "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
-              "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-              "devtools.chrome.enabled" = true;
-              "devtools.debugger.remote-enabled" = true;
-              "dom.storage.next_gen" = true;
-              "dom.forms.autocomplete.formautofill" = true;
-              "extensions.htmlaboutaddons.recommendations.enabled" = false;
-              "extensions.formautofill.addresses.enabled" = false;
-              "extensions.formautofill.creditCards.enabled" = false;
-              "general.autoScroll" = false;
-              "general.smoothScroll.msdPhysics.enabled" = true;
-              "geo.enabled" = false;
-              "geo.provider.use_corelocation" = false;
-              "geo.provider.use_geoclue" = false;
-              "geo.provider.use_gpsd" = false;
-              "gfx.font_rendering.directwrite.bold_simulation" = 2;
-              "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
-              "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" =
-                "";
-              "intl.accept_languages" = "en-US,en";
-              "media.eme.enabled" = true;
-              "media.videocontrols.picture-in-picture.video-toggle.enabled" =
-                false;
-              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-              "font.name.monospace.x-western" = "MonaspiceKr Nerd Font";
-              "font.name.sans-serif.x-western" = "MonaspiceNe Nerd Font";
-              "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
-              "signon.autofillForms" = false;
-              "xpinstall.signatures.required" = false;
+              * {
+              font-family: JetBrainsMono Nerd Font Mono !important;
+              font-size: 12pt !important;
+              }
+
+              /* #nav-bar { visibility: collapse !important; } */
+                /* hide horizontal tabs at the top of the window */
+                #TabsToolbar > * {
+                  visibility: collapse;
+                }
+
+                /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
+                #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) {
+                  margin-top: -45px;
+                }
+                #navigator-toolbox {
+                  transition: 0.2s margin-top ease-out;
+                }
+      '';
+      userContent = ''
+                /*hide all scroll bars*/
+                /* *{ scrollbar-width: none !important } */
+
+                * {
+                font-family: JetBrainsMono Nerd Font Mono;
+                }
+
+                @-moz-document url-prefix("about:") {
+                    :root {
+                        --in-content-page-background: #1E1E2E !important;
+                    }
+                }
+
+                @-moz-document url-prefix(about:home), url-prefix(about:newtab){
+
+            /* show nightly logo instead of default firefox logo in newtabpage */
+            .search-wrapper .logo-and-wordmark .logo {
+                background: url("${logo}") no-repeat center !important;
+                background-size: auto !important;
+                background-size: 82px !important;
+                display: inline-block !important;
+                height: 82px !important;
+                width: 82px !important;
             }
-            (optionalAttrs cfg.gpuAcceleration {
-              "dom.webgpu.enabled" = true;
-              "gfx.webrender.all" = true;
-              "layers.gpu-process.enabled" = true;
-              "layers.mlgpu.enabled" = true;
-            })
-            (optionalAttrs cfg.hardwareDecoding {
-              "media.ffmpeg.vaapi.enabled" = true;
-              "media.gpu-process-decoder" = true;
-              "media.hardware-video-decoding.enabled" = true;
-            })
-          ];
 
-          # TODO: support alternative theme loading
-          userChrome = builtins.readFile ./chrome/userChrome.css + ''
-            ${cfg.userChrome}
-          '';
-        };
-      };
+            body {
+                background-color: #000000 !important;
+                background: url("${bg}") no-repeat fixed !important;
+                background-size: cover !important;
+                --newtab-background-color: #000000 !important;
+                --newtab-background-color-secondary: #101010 !important;
+            }
+
+            body[lwt-newtab-brighttext] {
+                --newtab-background-color: #000000 !important;
+                --newtab-background-color-secondary: #101010 !important;
+
+            }
+
+            .top-site-outer .top-site-icon {
+                background-color: transparent !important;
+
+            }
+
+            .top-site-outer .tile {
+                background-color: rgba(49, 49, 49, 0.4) !important;
+            }
+
+            .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
+                background: rgba(49, 49, 49, 0.3) !important;
+            }
+
+            .top-site-outer .context-menu-button:is(:active, :focus) {
+                background-color: transparent !important;
+            }
+
+            .search-wrapper .search-handoff-button{
+                border-radius: 40px !important;
+                background-color: rgba(49, 49, 49, 0.4) !important;
+            }
+        }
+      '';
     };
   };
+
 }

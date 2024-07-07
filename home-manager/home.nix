@@ -46,26 +46,9 @@ in {
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-    terminal = {
-      tools = {
-        git = enabled;
-        ssh = enabled;
-      };
-    };
     # Direnv integration for flakes
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
-  };
-
-  system = { xdg = enabled; };
-
-  services = {
-    sops = {
-      enable = true;
-      defaultSopsFile =
-        lib.snowfall.fs.get-file "secrets/khanelinix/khaneliman/default.yaml";
-      sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
-    };
   };
 
   # Place Files Inside Home Directory

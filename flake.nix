@@ -94,12 +94,6 @@
     # wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
     wezterm = { url = "github:wez/wezterm?dir=nix"; };
 
-    # Snowfall Lib
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nur.url = "github:nix-community/NUR";
 
     sops-nix = {
@@ -119,12 +113,8 @@
         inherit system;
         config = { allowUnfree = true; };
       };
-      # lib = nixpkgs.lib;
+      lib = nixpkgs.lib;
 
-      inherit (inputs) snowfall-lib;
-      src = ./.;
-
-      lib = snowfall-lib.mkLib { namespace = "se7en"; };
       # selfPkgs = import ./pkgs;
     in {
       nixosConfigurations = {

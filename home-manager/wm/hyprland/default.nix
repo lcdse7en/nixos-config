@@ -1,5 +1,4 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   imports = [ ./config.nix ];
 
   wayland.windowManager.hyprland = {
@@ -14,15 +13,10 @@
   home.packages = [
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-  ] ++ (with pkgs;[
-    swww
-    swappy
-    swaylock-effects
-    swayidle
-    pamixer
-  ]);
+  ] ++ (with pkgs; [ swww hyprlock swappy swaylock-effects swayidle pamixer ]);
 
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  systemd.user.targets.hyprland-session.Unit.Wants =
+    [ "xdg-desktop-autostart.target" ];
 
   home = {
     sessionVariables = {

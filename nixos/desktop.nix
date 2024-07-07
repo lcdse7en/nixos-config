@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-{
-  programs = {
-    dconf.enable = true;
-  };
+{ pkgs, ... }: {
+  programs = { dconf.enable = true; };
 
   programs.nm-applet = {
     enable = true;
@@ -30,6 +27,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      dolphin-emu
       libnotify
       wl-clipboard
       wlr-randr
@@ -67,6 +65,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    udev.packages = [ pkgs.dolphinEmu ];
   };
 
   # programs.adb.enable = true;
