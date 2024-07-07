@@ -15,7 +15,7 @@ in {
     homeDirectory = "/home/se7en";
     sessionVariables = {
       EDITOR = "nvim";
-      TERM = "xterm-256color";
+      # TERM = "xterm-256color";
       COLORTERM = "truecolor";
     };
     stateVersion = "24.05";
