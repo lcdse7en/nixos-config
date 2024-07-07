@@ -21,6 +21,14 @@ in {
     stateVersion = "24.05";
   };
 
+  xdg.enable = true;
+  xdg.configFile."nix/nix.conf".text = ''
+    experimental-features = nix-command flakes
+    # see https://github.com/nix-community/nix-direnv#via-home-manager
+    keep-derivations = true
+    keep-outputs = true
+  '';
+
   home.file = {
     # ".config/hypr/hyprland.conf".source = ../dotfiles/config/hypr/hyprland.conf;
   };
