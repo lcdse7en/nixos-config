@@ -98,6 +98,7 @@
     let
       user = "se7en";
       system = "x86_64-linux";
+      namespace = "se7en";
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
