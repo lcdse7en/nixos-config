@@ -49,7 +49,12 @@
       url = "github:hyprwm/Hyprland?ref=v0.41.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprlock = { url = "github:hyprwm/hyprlock"; };
+    hyprlock = {
+      url = "github:hyprwm/Hyprlock";
+      # NOTE: required to prevent red screen on lock
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprcursor = { url = "github:hyprwm/hyprcursor"; };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -71,6 +76,10 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -81,7 +90,15 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     impermanence.url = "github:nix-community/impermanence";
-    wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
+
+    # wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
+    wezterm = { url = "github:wez/wezterm?dir=nix"; };
+
+    # Snowfall Lib
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur.url = "github:nix-community/NUR";
 
@@ -98,12 +115,18 @@
     let
       user = "se7en";
       system = "x86_64-linux";
-      namespace = "se7en";
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
-      lib = nixpkgs.lib;
+      # lib = nixpkgs.lib;
+
+      inherit (inputs) snowfall-lib;
+
+      lib = snowfall-lib.mkLib {
+        namespace = "se7en";
+
+      };
       # selfPkgs = import ./pkgs;
     in {
       nixosConfigurations = {
@@ -127,7 +150,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 users.se7en = import ./home-manager/home.nix;
-                extraSpecialArgs = { inherit inputs user namespace; };
+                extraSpecialArgs = { inherit inputs user; };
               };
             }
           ];
