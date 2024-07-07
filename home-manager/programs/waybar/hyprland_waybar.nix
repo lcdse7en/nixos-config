@@ -1,4 +1,9 @@
 { ... }: {
+  home.packages = with pkgs; [
+    font-awesome_6
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
+
   programs.waybar = {
     enable = true;
     # catppuccin.enable = false;
