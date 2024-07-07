@@ -82,6 +82,7 @@ in {
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
   };
+
   # Scripts
   home.packages = [
     (import ../scripts/screenshootin.nix { inherit pkgs; })
