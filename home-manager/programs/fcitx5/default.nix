@@ -9,15 +9,6 @@
       fcitx5-pinyin-moegirl
       fcitx5-pinyin-zhwiki
       fcitx5-mozc
-      (fcitx5-rime.override {
-        rimeDataPkgs = with config.nur.repos.xddxdd; [
-          rime-data
-          rime-aurora-pinyin
-          rime-dict
-          rime-moegirl
-          rime-zhwiki
-        ];
-      })
     ];
   };
   home.file = {
