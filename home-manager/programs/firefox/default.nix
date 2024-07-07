@@ -1,20 +1,20 @@
-{ config, lib, pkgs, namespace, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   inherit (lib) types mkIf mkMerge optionalAttrs;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.${user}) mkBoolOpt mkOpt;
 
-  cfg = config.${namespace}.programs.graphical.browsers.firefox;
+  cfg = config.${user}.programs.graphical.browsers.firefox;
 
   firefoxPath = if pkgs.stdenv.isLinux then
-    ".mozilla/firefox/${config.${namespace}.user.name}"
+    ".mozilla/firefox/${config.${user}.user.name}"
   else
     "/Users/${
-      config.${namespace}.user.name
+      config.${user}.user.name
     }/Library/Application Support/Firefox/Profiles/${
-      config.${namespace}.user.name
+      config.${user}.user.name
     }";
 in {
-  options.${namespace}.programs.graphical.browsers.firefox = with types; {
+  options.${user}.programs.graphical.browsers.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Firefox.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
@@ -80,12 +80,12 @@ in {
       profiles = {
         "dev-edition-default" = {
           id = 0;
-          path = "${config.${namespace}.user.name}";
+          path = "${config.${user}.user.name}";
         };
 
-        ${config.${namespace}.user.name} = {
+        ${config.${user}.user.name} = {
           inherit (cfg) extraConfig;
-          inherit (config.${namespace}.user) name;
+          inherit (config.${user}.user) name;
 
           id = 1;
 
