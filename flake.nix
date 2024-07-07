@@ -122,11 +122,9 @@
       # lib = nixpkgs.lib;
 
       inherit (inputs) snowfall-lib;
+      src = ./.;
 
-      lib = snowfall-lib.mkLib {
-        namespace = "se7en";
-
-      };
+      lib = snowfall-lib.mkLib { namespace = "se7en"; };
       # selfPkgs = import ./pkgs;
     in {
       nixosConfigurations = {
