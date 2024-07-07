@@ -1,20 +1,16 @@
-{ config, lib, pkgs, namespace, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   inherit (lib) types mkIf mkMerge optionalAttrs;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.se7en) mkBoolOpt mkOpt;
 
-  cfg = config.${namespace}.programs.graphical.browsers.firefox;
+  cfg = config.se7en.programs.graphical.browsers.firefox;
 
   firefoxPath = if pkgs.stdenv.isLinux then
-    ".mozilla/firefox/${config.${namespace}.user.name}"
+    ".mozilla/firefox/${config.se7en.user.name}"
   else
-    "/Users/${
-      config.${namespace}.user.name
-    }/Library/Application Support/Firefox/Profiles/${
-      config.${namespace}.user.name
-    }";
+    "/Users/${config.user.user.name}/Library/Application Support/Firefox/Profiles/${config.se7en.user.name}";
 in {
-  options.${namespace}.programs.graphical.browsers.firefox = with types; {
+  options.se7en.programs.graphical.browsers.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Firefox.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
@@ -80,12 +76,12 @@ in {
       profiles = {
         "dev-edition-default" = {
           id = 0;
-          path = "${config.${namespace}.user.name}";
+          path = "${config.se7en.user.name}";
         };
 
-        ${config.${namespace}.user.name} = {
+        ${config.se7en.user.name} = {
           inherit (cfg) extraConfig;
-          inherit (config.${namespace}.user) name;
+          inherit (config.se7en.user) name;
 
           id = 1;
 

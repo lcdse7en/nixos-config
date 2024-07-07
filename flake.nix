@@ -119,8 +119,12 @@
         inherit system;
         config = { allowUnfree = true; };
       };
-      lib = nixpkgs.lib;
+      # lib = nixpkgs.lib;
 
+      inherit (inputs) snowfall-lib;
+      src = ./.;
+
+      lib = snowfall-lib.mkLib { namespace = "se7en"; };
       # selfPkgs = import ./pkgs;
     in {
       nixosConfigurations = {
