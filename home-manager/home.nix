@@ -13,6 +13,11 @@ in {
   home = {
     username = "se7en";
     homeDirectory = "/home/se7en";
+    sessionVariables = {
+      EDITOR = "nvim";
+      TERM = "xterm-256color";
+      COLORTERM = "truecolor";
+    };
     stateVersion = "24.05";
   };
 
@@ -37,11 +42,6 @@ in {
     # ../pkgs
 
   ];
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    # BROWSER = "brave";
-  };
 
   programs = {
     # Let Home Manager install and manage itself.

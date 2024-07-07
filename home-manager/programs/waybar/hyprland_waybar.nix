@@ -1,32 +1,7 @@
-{ config, pkgs, ... }: {
-  # home.packages = with pkgs; [
-  #   font-awesome_6
-  #   (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  # ];
-
-  # programs.waybar = {
-  #   enable = true;
-  #   # catppuccin.enable = false;
-  #   style = ./style.css;
-  #   settings = {
-  #     mainBar = {
-  #       margin-top = 10;
-  #       margin-left = 7;
-  #       width = 1900;
-  #       height = 22;
-  #       modules-left = [ "hyprland/workspaces" ];
-  #       modules-center = [ "clock" ];
-  #       modules-right = [ "network" "memory" "battery" "pulseaudio" ];
-  #       clock = {
-  #         format = " {:%r  %d/%m/%y}";
-  #         interval = 1;
-  #         tooltip-format = ''
-  #           <big>{:%Y %B}</big>
-  #           <tt><small>{calendar}</small></tt>'';
-  #       };
-  #     };
-  #   };
-  # };
+{ config, pkgs, ... }:
+let sharedScripts = import ./share_scripts.nix { inherit pkgs; };
+in {
+  home.packages = with pkgs; [ wlogout ];
 
   programs.waybar.enable = true;
   programs.waybar.style = ./style.css;
@@ -65,6 +40,7 @@
         "custom/separator"
         "custom/clock-icon"
         "clock"
+        "custom/power"
       ];
       modules-center = [ "hyprland/workspaces" ];
 
@@ -120,6 +96,15 @@
         "tooltip-format" = ''
           <big>{:%B %Y}</big>
           <tt><small>{calendar}</small></tt>'';
+      };
+
+      "custom/power" = {
+        "format" = "{}";
+        "exec" = "echo ; echo  logout";
+        "on-click" = "logoutlaunch.sh 2";
+        "on-click-right" = "logoutlaunch.sh 1";
+        "interval" = 86400; # once every day
+        "tooltip" = true;
       };
 
       "cpu" = {

@@ -217,5 +217,10 @@ window#waybar {
 #clock {
   padding-left: 10px;
 }
+#custom-power {
+  color: #6e738d;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 /*# sourceMappingURL=style.css.map */
