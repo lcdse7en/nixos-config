@@ -1,8 +1,5 @@
 {
   home.sessionVariables.TERM = "wezterm";
 
-  imports = [
-    ./kitty
-    ./wezterm
-  ];
+  imports = [ ./kitty ./wezterm ./foot ];
 }
