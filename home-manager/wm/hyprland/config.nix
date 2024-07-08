@@ -1,5 +1,5 @@
 { pkgs, config, inputs, lib, ... }: {
-  # imports = [ ../../programs/waybar/hyprland_waybar.nix ];
+  imports = [ ../../programs/waybar/hyprland_waybar.nix ];
   wayland.windowManager.hyprland = {
     extraConfig = ''
 
