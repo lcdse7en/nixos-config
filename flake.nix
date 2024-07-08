@@ -92,7 +92,10 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # wezterm.url = "github:notohh/wezterm?dir=nix&ref=nix-add-overlay";
-    wezterm = { url = "github:wez/wezterm?dir=nix"; };
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur.url = "github:nix-community/NUR";
 
