@@ -13,7 +13,19 @@
   home.packages = [
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-  ] ++ (with pkgs; [ swww hyprlock swappy swaylock-effects swayidle pamixer ]);
+  ] ++ (with pkgs; [
+    swww
+    hyprlock
+    swappy
+    swaylock-effects
+    hyprcursor
+    pamixer
+    imagemagick
+    slurp
+    pavucontrol
+    playerctl
+    wl-clipboard
+  ]);
 
   systemd.user.targets.hyprland-session.Unit.Wants =
     [ "xdg-desktop-autostart.target" ];

@@ -17,7 +17,7 @@
       }];
 
       background = [{
-        path = "../bgimages/Mocha-hald8-maria-KrJ03A1r8Qo-unsplash.jpg";
+        path = "~/airplane.png";
         blur_passes = 3;
         blur_size = 3;
         noise = 1.17e-2;
