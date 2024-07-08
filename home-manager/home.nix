@@ -50,6 +50,7 @@ in {
 
     ./wm/hyprland
     ./wm/hyprlock
+    ../scripts
 
     (import ./editors/neovim { inherit config pkgs configDir; })
 
@@ -90,9 +91,9 @@ in {
   };
 
   # Scripts
-  home.packages = [
-    (import ../scripts/screenshootin.nix { inherit pkgs; })
-    (import ../scripts/web-search.nix { inherit pkgs; })
-
-  ];
+  # home.packages = [
+  #   (import ../scripts/screenshootin.nix { inherit pkgs; })
+  #   (import ../scripts/web-search.nix { inherit pkgs; })
+  #
+  # ];
 }
