@@ -29,6 +29,7 @@ in {
     loginShellInit = if config.wayland.windowManager.hyprland.enable then ''
       set TTY1 (tty)
       [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
+      set -gx XCURSOR_THEME Adwaita
     '' else if config.wayland.windowManager.sway.enable then ''
       set TTY1 (tty)
       [ "$TTY1" = "/dev/tty1" ] && exec sway
