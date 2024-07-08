@@ -16,10 +16,6 @@
         "QT_QPA_PLATFORMTHEME, qt5ct"
         "GDK_BACKEND, wayland,x11"
       ];
-      exec-once = [
-        "fcitx5 -d --replace"
-        "hyprctl dispatch exec [workspace 1 silent] wezterm"
-      ];
     };
 
   };
