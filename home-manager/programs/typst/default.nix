@@ -1,4 +1,1 @@
-{ pkgs, ... }: {
-  home = { packages = with pkgs; [ typst typstyle ]; };
-
-}
+{ pkgs, ... }: { home = { packages = with pkgs; [ typst typstyle ]; }; }
