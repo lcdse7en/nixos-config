@@ -30,6 +30,7 @@ in {
         "custom/filler"
         "disk"
         "custom/filler"
+        "tray"
       ];
       modules-right = [
         "custom/dot"

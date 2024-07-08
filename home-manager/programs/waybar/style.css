@@ -25,6 +25,7 @@ window#waybar {
 
 #cpu,
 #memory,
+#tray,
 #temperature {
   font-size: 14px;
   background: #2a2d45;
