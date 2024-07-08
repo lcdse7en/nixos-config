@@ -157,7 +157,7 @@ in {
       "network" = {
         "format-wifi" = " ";
         "format-ethernet" =
-          "󰈀   {bandwidthDownBits}  {bandwidthUpBits} {ipaddr}/{cidr}";
+          "󰈀   {bandwidthDownBytes}  {bandwidthUpBytes} {ipaddr}/{cidr}";
         "tooltip-format" = ''
           Network: <big><b>{essid}</b></big>
           Signal strength: <b>{signaldBm}dBm
