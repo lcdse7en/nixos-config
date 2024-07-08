@@ -1,10 +1,9 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    (python311.withPackages (p: [ p.python-pam ]))
+    # (python311.withPackages (p: [ p.python-pam ]))
     gnumake
     cmake
     gcc
-    unstable.gdb
     nodejs
     jdk21
     (maven.override { jdk = pkgs.jdk21; })
