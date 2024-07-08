@@ -36,6 +36,6 @@ in {
       ];
     }];
     style = builtins.readFile ./style.css;
-    systemd.enable = true;
+    # systemd.enable = true;
   };
 }
