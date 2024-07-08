@@ -50,13 +50,12 @@ in {
 
     ./wm/hyprland
     ./wm/hyprlock
-    # ../scripts
 
     (import ./editors/neovim { inherit config pkgs configDir; })
 
     # ../pkgs
 
-  ];
+  ] ++ lib.concatMap import [ ../scripts ];
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -92,9 +91,8 @@ in {
 
   # Scripts
   home.packages = [
-    # (import ../scripts/screenshootin.nix { inherit pkgs; })
+    # (import ../scripts/default.nix { inherit pkgs; })
     # (import ../scripts/web-search.nix { inherit pkgs; })
-    ../scripts
 
   ];
 }
