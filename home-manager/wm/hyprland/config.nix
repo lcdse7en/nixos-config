@@ -17,7 +17,7 @@
       exec-once = ~/hypr/scripts/swwwallpaper.sh # start wallpaper daemon
 
       $mainMod = SUPER
-      $browser = firefox
+      $browser = brave
 
       # $scripts=$HOME/.config/hypr/scripts
 
@@ -168,7 +168,7 @@
       # ======================================================================
       # bind = $mainMod, W, exec, $browser # open browser
       # bind = $mainMod, W, exec, web-search # web-search
-      bind = $mainMod, W, exec, firefox
+      bind = $mainMod, W, exec, brave
       bind = $mainMod SHIFT, W, exec, $browser https://github.com/lcdse7en # se7en github
       bind = $mainMod, B, exec, $browser  https://www.bilibili.com/ # bilibili
       bind = $mainMod SHIFT, B, exec, $browser https://member.bilibili.com/platform/upload-manager/article # bilibili
@@ -177,8 +177,8 @@
       bind = $mainMod, F7, exec, $browser https://www.kpopn.com/category/news # kpopn
       bind = $mainMod, F8, exec, emacs  # open emacs
 
-      # bind = $mainMod, Return, exec, wezterm
-      bind = $mainMod, Return, exec, kitty --class="termfloat" wezterm
+      bind = $mainMod, Return, exec, wezterm
+      # bind = $mainMod, Return, exec, kitty --class="termfloat" wezterm
 
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
       bind = $mainMod SHIFT, Space, togglefloating,

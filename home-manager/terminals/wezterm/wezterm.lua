@@ -3,7 +3,7 @@ local oct = wezterm.action
 local config = wezterm.config_builder()
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
--- config.hide_mouse_cursor_when_typing = true
+config.hide_mouse_cursor_when_typing = true
 config.window_decorations = 'RESIZE'
 
 -- sleek tab bar
@@ -96,8 +96,8 @@ return {
 }
 end)
 
--- config.color_scheme = 'tokyonight_night'
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'tokyonight_night'
+-- config.color_scheme = 'Catppuccin Mocha'
 config.colors = {
   tab_bar = {
     background = '#292e42'
