@@ -4,6 +4,7 @@ let
     in {
       home.packages = [
         gen-ssh-key # generate ssh key and add it to the system
+        recorder
       ] ++ (pkgs.sxm.scripts or [ ]);
     };
 in [ scripts ]
