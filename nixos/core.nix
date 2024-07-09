@@ -153,6 +153,7 @@
     # Enable CUPS to print documents.
     printing.enable = true;
     mpd = { enable = true; };
+    go2rtc = { enable = true; };
     transmission = {
       enable = true;
       openFirewall = true;

@@ -28,7 +28,6 @@ writeShellApplication {
         # Trap for cleanup on exit
         OnExit() {
       	  # notify-send --icon ~/.config/hypr/assets/square.png -u warning "Recording canceled"
-      	  notify-send -u warning "Recording canceled"
       	  [[ -f $TmpRecordPath ]] && rm -f "$TmpRecordPath"
       	  [[ -f $TmpPalettePath ]] && rm -f "$TmpPalettePath"
         }
