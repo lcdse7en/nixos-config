@@ -16,9 +16,6 @@
   "custom/dot": {
     "format": " "
   },
-  "custom/clock-icon": {
-    "format": ""
-  },
   "custom/separator": {
     "format": " "
   },
@@ -52,8 +49,8 @@
     "spacing": 8
   },
   "clock": {
-    "format": "<b>{:%I:%M %p }</b>",
-    "format-alt": "<b>{:%a.%d;%b}</b>",
+    "format": "<b>  {:%I:%M %p }</b>",
+    "format-alt": "<b>{:%A, %B %d %Y (%R)}</b>",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -150,5 +147,14 @@
     "interval": 3600,
     "exec": "wttrbar --location 'xiantao'",
     "return-type": "json"
+  },
+  "custom/recorder": {
+    "format": "{}",
+    "interval": "once",
+    "exec": "echo ''",
+    "tooltip": "false",
+    "exec-if": "pgrep 'wl-screenrec'",
+    "on-click": "exec $HOME/.config/waybar/bin/recorder",
+    "signal": 4
   }
 }

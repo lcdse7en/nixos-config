@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let sharedScripts = import ./share_scripts.nix { inherit pkgs; };
 in {
-  home.packages = with pkgs; [ wttrbar wlogout ];
+  home.packages = with pkgs; [ wttrbar wl-screenrec wlogout ];
 
   programs.waybar = {
     enable = true;
@@ -32,7 +32,6 @@ in {
         "pulseaudio"
         "custom/separator"
         "custom/weather"
-        "custom/clock-icon"
         "clock"
         "custom/power"
         # "custom/reboot"
