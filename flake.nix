@@ -113,8 +113,8 @@
     nixpkgs-system.url = "github:eljamm/nixpkgs/system";
   };
 
-  outputs =
-    inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland
+    , spicetify-nix, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";
