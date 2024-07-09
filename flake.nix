@@ -82,7 +82,7 @@
     };
     wttrbar = {
       url = "github:bjesus/wttrbar";
-      inputs.hyprland.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     neovim-nightly-overlay = {
