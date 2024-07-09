@@ -23,6 +23,26 @@ window#waybar {
   background-color: #1a1c2b;
 }
 
+#custom-quit,
+#custom-lock,
+#custom-reboot,
+#custom-power {
+  font-size: 14px;
+  background: #2a2d45;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#custom-power {
+  color: #ff0000;
+  padding: 0px 10px 0px 12px;
+  border-radius: 5px 0px 0px 5px;
+}
+#custom-reboot {
+  color: #8aadf4;
+  padding: 0px 12px 0px 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
 #cpu,
 #memory,
 #tray,
@@ -217,11 +237,6 @@ window#waybar {
 
 #clock {
   padding-left: 10px;
-}
-#custom-power {
-  color: #6e738d;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

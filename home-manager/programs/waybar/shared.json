@@ -117,5 +117,37 @@
     "scroll-step": 5,
     "on-click": "pulsemixer",
     "on-click-right": "pavucontrol"
+  },
+  "custom/quit": {
+    "format": "󰗼 ",
+    "tooltip": false,
+    "on-click": "hyprctl dispatch exit"
+  },
+  "custom/lock": {
+    "format": "󰍁 ",
+    "tooltip": false,
+    "on-click": "hyprlock"
+  },
+  "custom/reboot": {
+    "format": "󰜉 ",
+    "tooltip": false,
+    "on-click": "reboot"
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "poweroff"
+  },
+  "hyprland/language": {
+    "format": "󰌌 {}",
+    "keyboard-name": "dygma-defy-keyboard",
+    "on-click": "hyprctl switchxkblayout dygma-defy-keyboard next"
+  },
+  "custom/weather": {
+    "format": "{}°",
+    "toolrip": true,
+    "interval": 3600,
+    "exec": "wttrbar",
+    "return-type": "json"
   }
 }

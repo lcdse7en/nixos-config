@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let sharedScripts = import ./share_scripts.nix { inherit pkgs; };
 in {
-  home.packages = with pkgs; [ wlogout ];
+  home.packages = with pkgs; [ wttrbar wlogout ];
 
   programs.waybar = {
     enable = true;
@@ -21,7 +21,8 @@ in {
         "custom/filler"
         "disk"
         "custom/filler"
-        "tray"
+        "hyprland/language"
+        # "tray"
       ];
       modules-right = [
         "custom/dot"
@@ -33,6 +34,7 @@ in {
         "custom/clock-icon"
         "clock"
         "custom/power"
+        # "custom/reboot"
       ];
     }];
     style = builtins.readFile ./style.css;

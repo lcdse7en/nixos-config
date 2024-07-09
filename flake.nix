@@ -80,6 +80,10 @@
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wttrbar = {
+      url = "github:bjesus/wttrbar";
+      inputs.hyprland.follows = "nixpkgs";
+    };
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
