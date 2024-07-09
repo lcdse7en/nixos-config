@@ -1,5 +1,5 @@
-{ lib, libnotify, slurp, wl-clipboard, wl-screenrec, writeShellApplication, ...
-}:
+{ pkgs, lib, libnotify, slurp, wl-clipboard, wl-screenrec, writeShellApplication
+, ... }:
 
 writeShellApplication {
   name = "recorder";
@@ -11,7 +11,7 @@ writeShellApplication {
 
   checkPhase = "";
 
-  runtimeInputs = [ zenity libnotify slurp wl-clipboard wl-screenrec ];
+  runtimeInputs = [ pkgs.zenity libnotify slurp wl-clipboard wl-screenrec ];
 
   text = # bash
     ''
