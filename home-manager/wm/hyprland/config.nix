@@ -182,7 +182,7 @@
       # bind = $mainMod, Return, exec, kitty --class="termfloat" wezterm
 
       bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat"
-      bind = $mainMod SHIFT, Space, togglefloating,
+      bind = $mainMod, V, togglefloating,
       bind = $mainMod,Y,pin
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, T, togglesplit, # dwindle
