@@ -91,6 +91,8 @@
     };
     nixd.url = "github:nix-community/nixd";
 
+    spicetify-nix = { url = "github:the-argus/spicetify-nix"; };
+
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     impermanence.url = "github:nix-community/impermanence";
