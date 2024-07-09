@@ -48,10 +48,8 @@ in {
 
     # ./dev
 
-    # ./wm/hyprland
-    # ./wm/hyprlock
-
-    ./wm/sway
+    ./wm/hyprland
+    ./wm/hyprlock
 
     (import ./editors/neovim { inherit config pkgs configDir; })
 

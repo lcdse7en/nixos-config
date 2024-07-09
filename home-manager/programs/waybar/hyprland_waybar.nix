@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let sharedScripts = import ./share_scripts.nix { inherit pkgs; };
 in {
-  home.packages = with pkgs; [ wttrbar wl-screenrec jq wlogout ];
+  home.packages = with pkgs; [ wttrbar wl-screenrec jq zenity wlogout ];
 
   programs.waybar = {
     enable = true;
