@@ -147,7 +147,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 users.se7en = import ./home-manager/home.nix;
-                extraSpecialArgs = { inherit inputs user; };
+                extraSpecialArgs = { inherit inputs user spicetify-nix; };
               };
             }
           ];
