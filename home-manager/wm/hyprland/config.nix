@@ -157,11 +157,12 @@
       #-------------------------------#
       # Window/Session actions        #
       #-------------------------------#
-      bind = $mainMod, Q, killactive,
+      bind = $mainMod, Q, killactive
       bind = $mainMod SHIFT, Q, exit, # kill hyperland session
       bind = $mainMod, F, fullscreen, 1 # toggle the window on focus to fullscreen
       bind = $mainMod SHIFT, F, fullscreen, 0 # toggle the window on focus to fullscreen
       bind = $mainMod SHIFT, Z, exec, hyprlock # lock screen
+      bind = $mainMod, E, dolphin
 
       # ======================================================================
       # Open Browser
