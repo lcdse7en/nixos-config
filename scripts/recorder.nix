@@ -52,7 +52,7 @@ writeShellApplication {
 
       	  OUTPUT=$(hyprctl -j monitors | jq -r '.[] | select( .focused | IN(true)).name')
 
-      	  timeout 600 wl-screenrec --audio --audio-device alsa_output.pci-0000_0c_00.4.analog-stereo.monitor -f "$TmpRecordPath" -o "$OUTPUT" || exit
+      	  timeout 600 wl-screenrec --low-power=off --audio --audio-device alsa_output.pci-0000_0c_00.4.analog-stereo.monitor -f "$TmpRecordPath" -o "$OUTPUT" || exit
         fi
 
         # Get the filename from the user and honor cancel

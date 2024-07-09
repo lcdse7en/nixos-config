@@ -184,7 +184,7 @@
       bind = $mainMod SHIFT, Space, togglefloating,
       bind = $mainMod,Y,pin
       bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
+      bind = $mainMod, T, togglesplit, # dwindle
 
       #-------------------------------#
       # Screenshot                    #
@@ -196,7 +196,7 @@
       #-----------------------#
       # Toggle grouped layout #
       #-----------------------#
-      bind = $mainMod, K, togglegroup,
+      bind = $mainMod SHIFT, T, togglegroup,
       bind = $mainMod, Tab, changegroupactive, f
 
       #------------#
@@ -212,6 +212,10 @@
       bind = $mainMod, right, movefocus, r
       bind = $mainMod, up, movefocus, u
       bind = $mainMod, down, movefocus, d
+      bind = $mainMod, H, movefocus, l
+      bind = $mainMod, L, movefocus, r
+      bind = $mainMod, K, movefocus, u
+      bind = $mainMod, J, movefocus, d
 
       #----------------------------------------#
       # Switch workspaces with mainMod + [0-9] #
@@ -226,8 +230,8 @@
       bind = $mainMod, 8, workspace, 8
       bind = $mainMod, 9, workspace, 9
       bind = $mainMod, 0, workspace, 10
-      bind = $mainMod, L, workspace, +1
-      bind = $mainMod, H, workspace, -1
+      # bind = $mainMod, L, workspace, +1
+      # bind = $mainMod, H, workspace, -1
       bind = $mainMod, period, workspace, e+1
       bind = $mainMod, comma, workspace,e-1
       bind = $mainMod, T, workspace,TG

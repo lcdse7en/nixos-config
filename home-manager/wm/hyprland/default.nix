@@ -36,7 +36,7 @@
     playerctl
     wl-clipboard
     pulseaudio
-    wf-recorder
+    dolphin
   ]);
 
   systemd.user.targets.hyprland-session.Unit.Wants =
