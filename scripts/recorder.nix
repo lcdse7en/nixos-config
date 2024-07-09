@@ -1,5 +1,5 @@
-{ lib, gnome, libnotify, slurp, wl-clipboard, wl-screenrec
-, writeShellApplication, ... }:
+{ lib, libnotify, slurp, wl-clipboard, wl-screenrec, writeShellApplication, ...
+}:
 
 writeShellApplication {
   name = "recorder";
@@ -11,7 +11,7 @@ writeShellApplication {
 
   checkPhase = "";
 
-  runtimeInputs = [ gnome.zenity libnotify slurp wl-clipboard wl-screenrec ];
+  runtimeInputs = [ zenity libnotify slurp wl-clipboard wl-screenrec ];
 
   text = # bash
     ''
