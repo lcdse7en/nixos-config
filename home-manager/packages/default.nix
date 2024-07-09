@@ -22,8 +22,7 @@ let
     cava
     lua
   ];
-in
-{
+in {
   home = {
     # packages = stable ++ unstable;
     packages = unstable;
