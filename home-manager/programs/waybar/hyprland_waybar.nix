@@ -20,8 +20,8 @@ in {
         "custom/playerctl"
         "custom/filler"
         "disk"
-        "custom/filler"
-        "hyprland/language"
+        "custom/recorder"
+        "custom/vpn"
         # "tray"
       ];
       modules-right = [
