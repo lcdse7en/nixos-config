@@ -53,6 +53,11 @@ window#waybar {
   padding: 0px 12px 0px 0px;
   border-radius: 0px 5px 5px 0px;
 }
+#custom-spotify {
+  color: #f0fff0;
+  padding: 0px 12px 0px 0px;
+  border-radius: 0px 5px 5px 0px;
+}
 #custom-vpn {
   color: #f0fff0;
   padding: 0px 12px 0px 0px;
