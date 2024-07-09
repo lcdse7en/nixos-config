@@ -152,6 +152,10 @@
     };
     # Enable CUPS to print documents.
     printing.enable = true;
+    transmission = {
+      enable = true;
+      openFirewall = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;

@@ -144,10 +144,10 @@
     "on-click": "hyprctl switchxkblayout dygma-defy-keyboard next"
   },
   "custom/weather": {
-    "format": "{}°",
+    "format": "{}°C",
     "toolrip": true,
     "interval": 3600,
-    "exec": "wttrbar",
+    "exec": "wttrbar --location 'xiantao'",
     "return-type": "json"
   }
 }

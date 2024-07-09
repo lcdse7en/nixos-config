@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ config, pkgs, ... }:
 let sharedScripts = import ./share_scripts.nix { inherit pkgs; };
 in {
   home.packages = with pkgs; [ wttrbar wlogout ];
@@ -31,6 +31,7 @@ in {
         "custom/dot"
         "pulseaudio"
         "custom/separator"
+        "custom/weather"
         "custom/clock-icon"
         "clock"
         "custom/power"

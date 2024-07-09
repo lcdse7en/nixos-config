@@ -26,6 +26,7 @@
   ] ++ (with pkgs; [
     swww
     hyprlock
+    hyprshot
     swappy
     hyprcursor
     pamixer

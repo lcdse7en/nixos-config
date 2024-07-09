@@ -186,7 +186,12 @@
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
 
-      bind = $mainMod, n, exec, screenshootin
+      #-------------------------------#
+      # Screenshot                    #
+      #-------------------------------#
+      bind = $mainMod, n, exec, hyprshot -m output
+      bind = $mainMod SHIFT, N, exec, hyprshot -m window
+      bind = $mainMod, F12, exec, hyprshot -m region
 
       #-----------------------#
       # Toggle grouped layout #
