@@ -152,6 +152,7 @@
     };
     # Enable CUPS to print documents.
     printing.enable = true;
+    mpd = { enable = true; };
     transmission = {
       enable = true;
       openFirewall = true;
