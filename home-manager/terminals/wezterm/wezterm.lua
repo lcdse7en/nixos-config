@@ -96,7 +96,8 @@ return {
 }
 end)
 
-config.color_scheme = 'tokyonight_night'
+-- config.color_scheme = 'tokyonight_night'
+config.color_scheme = 'Everforest Dark (Gogh)'
 -- config.color_scheme = 'Catppuccin Mocha'
 config.colors = {
   tab_bar = {
@@ -126,7 +127,10 @@ right = 20,
 
 config.window_background_opacity = 0.75
 config.text_background_opacity = 0.75
+config.macos_window_background_blur = 40
 config.adjust_window_size_when_changing_font_size = false
+
+config.max_fps = 120
 
 config.debug_key_events = true
 config.inactive_pane_hsb = {
