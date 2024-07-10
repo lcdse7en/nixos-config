@@ -5,7 +5,8 @@ prepend_keymap = [
   { on = [ "l" ], exec = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
   { on = [ "<Enter>" ], exec = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
   { on = [ "<Right>" ], exec = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-  { on = [ "a" ], exec = "plugin keyjump --sync --args=keep", desc = "Keyjump (Keep mode)" },
+  # { on = [ "a" ], exec = "plugin keyjump --sync --args=keep", desc = "Keyjump (Keep mode)" },
+  { on = [ "a" ], exec = "plugin keyjump --sync", desc = "Keyjump (Keep mode)" },
   # Cut/Yank/Paste
 	# { on = [ "x" ], exec = [ "delete", "move 1 --in-operating" ] },
 
@@ -206,7 +207,7 @@ keymap = [
 
 	# Mode
 	{ on = [ "i" ], exec = "insert",                              desc = "Enter insert mode" },
-	{ on = [ "a" ], exec = "insert --append",                     desc = "Enter append mode" },
+	# { on = [ "a" ], exec = "insert --append",                     desc = "Enter append mode" },
 	{ on = [ "v" ], exec = "visual",                              desc = "Enter visual mode" },
 	{ on = [ "V" ], exec = [ "move -999", "visual", "move 999" ], desc = "Enter visual mode and select all" },
 

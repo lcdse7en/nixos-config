@@ -159,25 +159,18 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
-
 preloaders = [
     { name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
     # Image
+    { mime = "image/{heic,jxl,svg+xml}", run = "magick" },
     { mime = "image/*", run = "image" },
     # Video
     { mime = "video/*", run = "video" },
     # PDF
     { mime = "application/pdf", run = "pdf" },
-]
-
-prepend_previewers = [
-    { mine = "audio/*", exec = "exifaudio" },
-    { name = ".md", run = "glow" },
-    { mime = "audio/*", run = "exifaudio" },
-    { name = "video/*", run = "ffmpegthumbnailer" },
-    { name = ".svg", run = "magick" },
-    { name = ".xlsx", run = "xlsx" },
-    { name = ".xls", run = "xls" },
+    # Font
+	  { mime = "font/*", run = "font" },
+	  { mime = "application/vnd.ms-opentype", run = "font" },
 ]
 
 previewers = [
@@ -188,7 +181,7 @@ previewers = [
     # JSON
     { mime = "application/json", run = "json" },
     # Image
-    { mime = "image/vnd.djvu", run = "noop" },
+    { mime = "image/{heic,jxl,svg+xml}", run = "magick" },
     { mime = "image/*",        run = "image" },
     # Video
     { mime = "video/*", run = "video" },
@@ -197,6 +190,9 @@ previewers = [
     # Archive
     { mime = "application/*zip", run = "archive" },
     { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", run = "archive" },
+    # Font
+	  { mime = "font/*", run = "font" },
+	  { mime = "application/vnd.ms-opentype", run = "font" },
     # Fallback
     { name = "*", run = "file" },
 ]

@@ -21,6 +21,7 @@ let
     nsxiv
     cava
     lua
+    ffmpegthumbnailer
   ];
 in {
   home = {

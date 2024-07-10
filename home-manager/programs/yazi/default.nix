@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, config, ... }: {
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
@@ -10,5 +9,11 @@
     ".config/yazi/keymap.toml".source = ./keymap.toml;
     ".config/yazi/theme.toml".source = ./theme.toml;
     ".config/yazi/plugins/smart-enter.yazi".source = ./plugins/smart-enter.yazi;
+    ".config/yazi/plugins/keyjump.yazi".source = ./plugins/keyjump.yazi;
+    ".config/yazi/flavors/everforest-dark.yazi".source =
+      ./flavors/everforest-dark.yazi;
+    ".config/yazi/ui.lua".text = "${builtins.readFile ./ui.lua}";
+
   };
+
 }

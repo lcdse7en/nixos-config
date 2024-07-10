@@ -1,5 +1,5 @@
 {
   home.sessionVariables.TERM = "wezterm";
 
-  imports = [ ./kitty ./wezterm ./alacritty ];
+  imports = [ ./kitty ./wezterm ];
 }
