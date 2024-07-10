@@ -8,6 +8,7 @@ in {
         inherit pkgs;
       }))
     inputs.neovim-nightly-overlay.overlays.default
+    inputs.yazi.overlays.default
   ];
 
   home = {
