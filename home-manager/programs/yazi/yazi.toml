@@ -177,7 +177,8 @@ preloaders = [
 	  { mime = "application/vnd.ms-opentype", run = "font" },
 ]
 
-previewers = [
+prepend_previewers = [
+# previewers = [
     { name = "*/", run = "folder", sync = true },
     # Code
     { mime = "text/*", run = "code" },
@@ -189,6 +190,7 @@ previewers = [
     { mime = "image/*",        run = "image" },
     # Video
     { mime = "video/*", run = "video" },
+    { mime = "audio/*", run = "exifaudio" },
     # PDF
     { mime = "application/pdf", run = "pdf" },
     # Archive
