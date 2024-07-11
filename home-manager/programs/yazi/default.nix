@@ -14,7 +14,7 @@
     ".config/yazi/plugins/arrow.yazi".source = ./plugins/arrow.yazi;
     ".config/yazi/flavors/everforest-dark.yazi".source =
       ./flavors/everforest-dark.yazi;
-    ".config/yazi/ui.lua".text = "${builtins.readFile ./ui.lua}";
+    ".config/yazi/init.lua".text = "${builtins.readFile ./init.lua}";
 
   };
 
