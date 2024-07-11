@@ -1,11 +1,16 @@
-{ pkgs, inputs, self, lib, ... }:
-{
+{ pkgs, inputs, self, lib, ... }: {
   nix = {
     channel.enable = false;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       nix-path = lib.mkForce "nixpkgs=flake:nixpkgs";
-      experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "configurable-impure-env" "cgroups" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "auto-allocate-uids"
+        "configurable-impure-env"
+        "cgroups"
+      ];
       auto-allocate-uids = true;
       use-cgroups = true;
       auto-optimise-store = true; # Optimise syslinks
@@ -28,8 +33,8 @@
     };
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+      dates = "Sun 19:00"; # weekly
+      options = "--delete-older-than 5d";
     };
     package = pkgs.nixVersions.git;
     registry.nixpkgs.flake = inputs.nixpkgs;
