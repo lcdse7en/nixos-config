@@ -108,10 +108,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nur.url = "github:nix-community/NUR";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -155,7 +152,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 users.se7en = import ./home-manager/home.nix;
-                extraSpecialArgs = { inherit inputs user spicetify-nix nur; };
+                extraSpecialArgs = { inherit inputs user spicetify-nix; };
               };
             }
           ];
