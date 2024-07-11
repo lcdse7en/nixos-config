@@ -122,7 +122,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, hyprland
-    , spicetify-nix, ... }:
+    , spicetify-nix, nur, ... }:
     let
       user = "se7en";
       system = "x86_64-linux";
@@ -155,7 +155,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 users.se7en = import ./home-manager/home.nix;
-                extraSpecialArgs = { inherit inputs user spicetify-nix; };
+                extraSpecialArgs = { inherit inputs user spicetify-nix nur; };
               };
             }
           ];
