@@ -11,6 +11,7 @@
     ".config/yazi/theme.toml".source = ./theme.toml;
     ".config/yazi/plugins/smart-enter.yazi".source = ./plugins/smart-enter.yazi;
     ".config/yazi/plugins/keyjump.yazi".source = ./plugins/keyjump.yazi;
+    ".config/yazi/plugins/arrow.yazi".source = ./plugins/arrow.yazi;
     ".config/yazi/flavors/everforest-dark.yazi".source =
       ./flavors/everforest-dark.yazi;
     ".config/yazi/ui.lua".text = "${builtins.readFile ./ui.lua}";

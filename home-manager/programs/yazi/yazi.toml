@@ -160,7 +160,6 @@ suppress_preload = false
 
 [plugin]
 fetchers = [
-	# Mimetype
 	{ id = "mime", name = "*", cond = "!mime", run = "mime", prio = "high" },
 ]
 preloaders = [
@@ -177,7 +176,7 @@ preloaders = [
 	  { mime = "application/vnd.ms-opentype", run = "font" },
 ]
 
-prepend_previewers = [
+previewers = [
 # previewers = [
     { name = "*/", run = "folder", sync = true },
     # Code
