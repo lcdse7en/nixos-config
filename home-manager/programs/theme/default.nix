@@ -45,7 +45,7 @@ in {
           name = "Tokyonight-Dark-BL";
         };
       };
-      xdg.configFile = { } // lib.optionalAttrs isLinux {
+      xdg.configFile = { } // lib.optionalAttrs true {
         "gtk-4.0/assets".source =
           "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
         "gtk-4.0/gtk.css".source =
