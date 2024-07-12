@@ -67,6 +67,7 @@ window#waybar {
 #cpu,
 #memory,
 #tray,
+#disk,
 #temperature {
   font-size: 14px;
   background: #2a2d45;
@@ -86,6 +87,11 @@ window#waybar {
 }
 
 #temperature {
+  color: #8aadf4;
+  padding: 0px 10px 0px 0px;
+}
+
+#disk {
   color: #8aadf4;
   padding: 0px 12px 0px 0px;
   border-radius: 0px 5px 5px 0px;
