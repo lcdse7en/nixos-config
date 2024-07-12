@@ -15,6 +15,7 @@
     ./desktop.nix
     ./udiskie.nix
     # ./impermanence.nix
+    ./secrets.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
