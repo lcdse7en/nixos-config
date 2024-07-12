@@ -96,8 +96,8 @@ return {
 }
 end)
 
--- config.color_scheme = 'tokyonight_night'
-config.color_scheme = 'Everforest Dark (Gogh)'
+config.color_scheme = 'tokyonight_night'
+-- config.color_scheme = 'Everforest Dark (Gogh)'
 -- config.color_scheme = 'Catppuccin Mocha'
 config.colors = {
   tab_bar = {
