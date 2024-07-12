@@ -40,6 +40,16 @@
 
     stylix.url = "github:danth/stylix";
 
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ###########################################################
+    #  Themes                                                 #
+    ###########################################################
+    catppuccin.url = "github:catppuccin/nix";
+    tokyonight.url = "github:mrjones2014/tokyonight.nix";
+
     ###########################################################
     #  Hyprland                                               #
     ###########################################################
