@@ -19,7 +19,7 @@ in {
       extensions = with config.nur.repos.rycee.firefox-addons; [
         bitwarden
         darkreader
-        ublock-origin
+        # ublock-origin
       ];
       search = {
         force = true;
