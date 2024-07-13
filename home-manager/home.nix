@@ -79,9 +79,10 @@ in {
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
   gtk = {
+    theme = { name = "tokyonight-Dark_BL"; };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "tokyonight-Dark_BL";
+      # package = pkgs.papirus-icon-theme;
     };
     gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
     gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
