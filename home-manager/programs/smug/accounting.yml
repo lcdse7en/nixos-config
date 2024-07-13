@@ -7,7 +7,7 @@
 
 session: accounting
 
-root: /home/se7en/github_upload/pdf-source-file/init-files/
+root: /home/se7en/pdf-source-file/init-files/
 
 windows:
   - name: edit-accounting
