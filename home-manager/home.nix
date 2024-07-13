@@ -18,6 +18,7 @@ in {
       EDITOR = "nvim";
       # TERM = "xterm-256color";
       COLORTERM = "truecolor";
+      GTK_THEME = "tokyonight-Dark_BL";
     };
     pointerCursor = {
       gtk.enable = true;
