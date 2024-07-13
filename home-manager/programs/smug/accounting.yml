@@ -1,0 +1,30 @@
+#*******************************************
+# Author:      se7enlcd                    *
+# E-mail:      2353442022@qq.com           *
+# Create_Time: 2023-06-07                  *
+# Description:                             *
+#*******************************************
+
+session: accounting
+
+root: /home/se7en/TypstProject/Accounting/
+
+windows:
+  - name: edit-accounting
+    layout: main-horizontal
+    commands:
+      - fish
+      - clear
+      - yy
+
+  - name: run
+    layout: main-horizontal
+    commands:
+      - fish
+      - clear
+      - rm -rf output.pdf
+      - typst-live main.typ &
+      - sleep 3
+      - pkill -f firefox
+      - sleep 5
+      - zathura output.pdf &

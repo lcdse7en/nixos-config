@@ -17,7 +17,6 @@ let
     fzf
     # dunst
     ncmpcpp
-    smug
     nsxiv
     cava
     lua

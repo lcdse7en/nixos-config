@@ -85,7 +85,7 @@ imgedit = [
 ]
 
 pdfedit = [
-    { run = 'zathura "$@"', desc = "Zathura", orphan = false },
+    { run = 'zathura "$@"', desc = "Zathura", orphan = true },
     { run = 'okular "$@"', desc = "Okular", orphan = false },
     { run = 'evince "$@"', desc = "Evince", orphan = false },
     { run = 'pdfarranger "$@"', desc = "PDF Arranger", orphan = false },
