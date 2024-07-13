@@ -22,7 +22,7 @@
 
       # zathurarc-dark
 
-      set font "DaddyTimeMono Nerd Font 15"
+      set font "FiraCode Nerd Font 12"
       set default-fg 			"#96CDFB"
       set default-bg 			"#1A1823"
 
@@ -63,7 +63,6 @@
 
       set highlight-color		"#96cdfb"
       set highlight-active-color	"#DDB6F2"
-
 
       set render-loading "false"
       set scroll-step 50
